@@ -7,6 +7,8 @@ import RespondPage from './pages/RespondPage';
 import CommunityPage from './pages/CommunityPage';
 import ResourcesPage from './pages/ResourcesPage';
 import DemographicPage from './pages/DemographicPage';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="/community" element={<CommunityPage />} />
           <Route path="/resources" element={<ResourcesPage />} />
           <Route path="/demographic/:type" element={<DemographicPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
         </Routes>
       </main>
       <Footer />

@@ -99,7 +99,7 @@ const Footer: React.FC = () => {
         <div className="border-t border-gray-700 mt-8 pt-6">
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
             <div className="text-sm text-gray-300">
-              © 2024 CyberSafe India. All rights reserved. | Privacy Policy | Terms of Service
+              © 2025 CyberSafe India. All rights reserved. | <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link> | <Link to="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link>
             </div>
             <div className="text-sm text-gray-300 hindi">
               साइबर सुरक्षित भारत - सुरक्षित डिजिटल भविष्य
