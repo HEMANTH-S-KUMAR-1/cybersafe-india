@@ -20,6 +20,16 @@ const LanguageSelector: React.FC = () => {
     };
   }, []);
 
+  // Load saved language preference on mount
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem('preferred-language');
+    if (savedLanguage && languages.find(lang => lang.code === savedLanguage)) {
+      setSelectedLanguage(savedLanguage);
+      document.documentElement.lang = savedLanguage;
+      document.body.classList.add(`lang-${savedLanguage}`);
+    }
+  }, []);
+
   const languages = [
     { code: 'en', name: 'English', native: 'English' },
     { code: 'hi', name: 'Hindi', native: 'हिंदी' },
@@ -36,7 +46,22 @@ const LanguageSelector: React.FC = () => {
   const handleLanguageChange = (langCode: string) => {
     setSelectedLanguage(langCode);
     setIsOpen(false);
-    // Language change logic would be implemented here
+    
+    // Apply language to document for better accessibility
+    document.documentElement.lang = langCode;
+    
+    // Store language preference in localStorage
+    localStorage.setItem('preferred-language', langCode);
+    
+    // Dispatch custom event for other components to listen to language changes
+    window.dispatchEvent(new CustomEvent('languageChanged', { 
+      detail: { language: langCode, languageData: languages.find(l => l.code === langCode) }
+    }));
+    
+    // Add CSS class to body for language-specific styling
+    document.body.className = document.body.className.replace(/\blang-\w+/g, '');
+    document.body.classList.add(`lang-${langCode}`);
+    
     console.log('Language changed to:', langCode);
   };
 
@@ -58,21 +83,21 @@ const LanguageSelector: React.FC = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         onKeyDown={handleKeyDown}
-        className="flex items-center space-x-2 px-3 py-2 bg-surface-hover hover:bg-surface rounded-lg transition-colors"
+        className="flex items-center space-x-2 px-3 py-2 bg-surface-hover hover:bg-surface rounded-lg transition-all duration-300 border border-border hover:border-primary"
         aria-label="Select language"
         aria-expanded={isOpen}
         aria-haspopup="listbox"
       >
-        <Globe className="h-4 w-4 text-gray-600" aria-hidden="true" />
-        <span className="text-sm font-medium text-gray-700">
+        <Globe className="h-4 w-4 text-primary" aria-hidden="true" />
+        <span className="text-sm font-medium text-text">
           {currentLanguage?.native}
         </span>
-        <ChevronDown className="h-4 w-4 text-gray-600" aria-hidden="true" />
+        <ChevronDown className="h-4 w-4 text-text-secondary" aria-hidden="true" />
       </button>
 
       {isOpen && (
         <div 
-          className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg border z-50 animate-fade-in"
+          className="language-dropdown absolute right-0 top-full mt-2 w-48 bg-surface rounded-lg shadow-lg border border-border z-50"
           role="listbox"
           aria-labelledby="language-selector-label"
         >
@@ -82,16 +107,16 @@ const LanguageSelector: React.FC = () => {
                 key={language.code}
                 onClick={() => handleLanguageChange(language.code)}
                 onKeyDown={(e) => handleKeyDown(e, language.code)}
-                className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors ${
+                className={`w-full text-left px-4 py-2 text-sm hover:bg-surface-hover transition-all duration-300 ${
                   selectedLanguage === language.code
-                    ? 'bg-blue-50 text-cyber-blue font-medium'
-                    : 'text-gray-700'
+                    ? 'bg-primary-light text-primary font-medium border-l-2 border-primary'
+                    : 'text-text-secondary hover:text-text'
                 }`}
                 role="option"
                 aria-selected={selectedLanguage === language.code}
               >
-                <span className="block">{language.name}</span>
-                <span className="block text-xs opacity-75">{language.native}</span>
+                <span className="block font-medium">{language.name}</span>
+                <span className="block text-xs opacity-75 mt-1">{language.native}</span>
               </button>
             ))}
           </div>

@@ -1247,6 +1247,36 @@
   opacity: 0;
 }
 
+/* Language Selector Enhancements */
+.lang-hi .hindi {
+  font-family: var(--font-hindi) !important;
+}
+
+.lang-en .hindi {
+  display: none;
+}
+
+.lang-hi .english-only {
+  display: none;
+}
+
+/* Language selector dropdown animations */
+.language-dropdown {
+  transform-origin: top right;
+  animation: dropdownSlide 0.2s ease-out;
+}
+
+@keyframes dropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 /* =========================
    ENHANCED THEME TRANSITION EFFECTS
    ========================= */
