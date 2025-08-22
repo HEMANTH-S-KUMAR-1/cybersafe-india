@@ -147,19 +147,19 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Demographics Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+      <section className="py-20 bg-surface">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-heading mb-6">
               Tailored Cyber Safety for Everyone
             </h2>
-            <p className="hindi text-xl text-gray-600 mb-2">हर किसी के लिए अनुकूलित साइबर सुरक्षा</p>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Choose your category to get personalized cyber safety guidance and protection strategies.
+            <p className="hindi text-2xl text-accent mb-4 font-medium">हर किसी के लिए अनुकूलित साइबर सुरक्षा</p>
+            <p className="text-xl text-text-secondary max-w-4xl mx-auto leading-relaxed">
+              Choose your category to get personalized cyber safety guidance and protection strategies designed specifically for your needs.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
             {demographics.map((demo) => {
               const IconComponent = demo.icon;
               return (
@@ -168,13 +168,13 @@ const HomePage: React.FC = () => {
                   to={`/demographic/${demo.id}`}
                   className="demographic-card group"
                 >
-                  <div className={`${demo.color} ${demo.hoverColor} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110`}>
-                    <IconComponent className="h-8 w-8 text-white" />
+                  <div className={`${demo.color} ${demo.hoverColor} w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:scale-110 shadow-lg`}>
+                    <IconComponent className="h-10 w-10 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{demo.title}</h3>
-                  <p className="hindi text-sm text-gray-600 mb-3">{demo.hindi}</p>
-                  <p className="text-gray-600 text-sm leading-relaxed">{demo.description}</p>
-                  <ArrowRight className="h-5 w-5 text-digital-orange mx-auto mt-4 group-hover:translate-x-1 transition-transform" />
+                  <h3 className="text-xl font-semibold text-heading mb-3">{demo.title}</h3>
+                  <p className="hindi text-base text-accent mb-4 font-medium">{demo.hindi}</p>
+                  <p className="text-text-secondary text-base leading-relaxed mb-4">{demo.description}</p>
+                  <ArrowRight className="h-6 w-6 text-primary mx-auto mt-4 group-hover:translate-x-2 transition-all duration-300" />
                 </Link>
               );
             })}
@@ -218,45 +218,45 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Quick Access */}
-      <section className="py-16 bg-gradient-to-r from-peacock-blue via-indigo-blue to-royal-purple text-white">
+      <section className="py-16 quick-access-gradient border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 drop-shadow-lg">Quick Access</h2>
-            <p className="hindi text-xl mb-2 drop-shadow">त्वरित पहुंच</p>
-            <p className="text-xl opacity-90">Get help immediately when you need it most</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-heading">Quick Access</h2>
+            <p className="hindi text-xl mb-2 text-text-secondary">त्वरित पहुंच</p>
+            <p className="text-xl text-text-muted">Get help immediately when you need it most</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Link to="/learn" className="bg-saffron bg-opacity-20 backdrop-blur-light rounded-lg p-6 text-center hover:bg-opacity-30 transition-all group shadow-lg hover:shadow-xl border border-saffron/30 hover:border-saffron/60">
               <div className="bg-saffron/30 p-4 rounded-full inline-flex items-center justify-center mb-4 group-hover:bg-saffron group-hover:text-white transition-all">
-                <BookOpen className="h-12 w-12 group-hover:scale-110 transition-transform" />
+                <BookOpen className="h-12 w-12 group-hover:scale-110 transition-transform text-text" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Learn</h3>
-              <p className="hindi text-sm opacity-75">सीखें</p>
+              <h3 className="text-xl font-semibold mb-2 text-heading">Learn</h3>
+              <p className="hindi text-sm text-text-muted">सीखें</p>
             </Link>
             
             <Link to="/respond" className="bg-alert-red bg-opacity-20 backdrop-blur-light rounded-lg p-6 text-center hover:bg-opacity-30 transition-all group shadow-lg hover:shadow-xl border border-alert-red/30 hover:border-alert-red/60">
               <div className="bg-alert-red/30 p-4 rounded-full inline-flex items-center justify-center mb-4 group-hover:bg-alert-red group-hover:text-white transition-all">
-                <Phone className="h-12 w-12 group-hover:scale-110 transition-transform" />
+                <Phone className="h-12 w-12 group-hover:scale-110 transition-transform text-text" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Get Help</h3>
-              <p className="hindi text-sm opacity-75">सहायता</p>
+              <h3 className="text-xl font-semibold mb-2 text-heading">Get Help</h3>
+              <p className="hindi text-sm text-text-muted">सहायता</p>
             </Link>
             
             <Link to="/community" className="bg-forest-green bg-opacity-20 backdrop-blur-light rounded-lg p-6 text-center hover:bg-opacity-30 transition-all group shadow-lg hover:shadow-xl border border-forest-green/30 hover:border-forest-green/60">
               <div className="bg-forest-green/30 p-4 rounded-full inline-flex items-center justify-center mb-4 group-hover:bg-forest-green group-hover:text-white transition-all">
-                <MessageSquare className="h-12 w-12 group-hover:scale-110 transition-transform" />
+                <MessageSquare className="h-12 w-12 group-hover:scale-110 transition-transform text-text" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Community</h3>
-              <p className="hindi text-sm opacity-75">समुदाय</p>
+              <h3 className="text-xl font-semibold mb-2 text-heading">Community</h3>
+              <p className="hindi text-sm text-text-muted">समुदाय</p>
             </Link>
             
             <Link to="/resources" className="bg-mango-yellow bg-opacity-20 backdrop-blur-light rounded-lg p-6 text-center hover:bg-opacity-30 transition-all group shadow-lg hover:shadow-xl border border-mango-yellow/30 hover:border-mango-yellow/60">
               <div className="bg-mango-yellow/30 p-4 rounded-full inline-flex items-center justify-center mb-4 group-hover:bg-mango-yellow group-hover:text-peacock-blue transition-all">
-                <Download className="h-12 w-12 group-hover:scale-110 transition-transform" />
+                <Download className="h-12 w-12 group-hover:scale-110 transition-transform text-text" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Resources</h3>
-              <p className="hindi text-sm opacity-75">संसाधन</p>
+              <h3 className="text-xl font-semibold mb-2 text-heading">Resources</h3>
+              <p className="hindi text-sm text-text-muted">संसाधन</p>
             </Link>
           </div>
         </div>

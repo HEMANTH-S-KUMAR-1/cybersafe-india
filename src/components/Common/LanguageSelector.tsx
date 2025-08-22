@@ -58,7 +58,7 @@ const LanguageSelector: React.FC = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         onKeyDown={handleKeyDown}
-        className="flex items-center space-x-2 px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+        className="flex items-center space-x-2 px-3 py-2 bg-surface-hover hover:bg-surface rounded-lg transition-colors"
         aria-label="Select language"
         aria-expanded={isOpen}
         aria-haspopup="listbox"

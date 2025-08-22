@@ -1,130 +1,1524 @@
+/* ============================
+   index.css — CyberSafe India
+   Designer-ready, Tailwind-compatible
+   - Complete light/dark theme system
+   - Proper color inversion for all components
+   - Accessible, maintainable CSS variables
+   ============================ */
+
+/* Import fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap');
 
+/* Tailwind required directives - MUST be at top */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* =========================
+   ENHANCED LIGHT THEME VARIABLES
+   Professional cybersecurity colors with Indian cultural elements
+   ========================= */
+:root {
+  /* Page backgrounds - Clean, modern approach */
+  --bg: #FAFCFF;              /* Subtle blue-tinted white */
+  --surface: #FFFFFF;         /* Pure white for cards */
+  --surface-hover: #F8FAFC;   /* Light gray-blue on hover */
+  
+  /* Text colors - High contrast for readability */
+  --text: #1A202C;            /* Very dark blue-gray for main text */
+  --text-secondary: #4A5568;   /* Medium blue-gray for secondary text */
+  --text-muted: #718096;      /* Light blue-gray for muted text */
+  --heading: #2D3748;         /* Dark blue-gray for headings */
+  
+  /* Cybersecurity brand colors - Trust and security */
+  --primary: #2B6CB0;         /* Deep security blue */
+  --primary-hover: #2C5282;   /* Darker security blue */
+  --primary-light: #EBF8FF;   /* Very light blue for backgrounds */
+  --accent: #ED8936;          /* Warm orange (Indian saffron inspired) */
+  --accent-hover: #DD6B20;    /* Darker orange */
+  --accent-light: #FFFAF0;    /* Very light orange */
+  
+  /* Cybersecurity semantic colors */
+  --success: #38A169;         /* Security green - safe/protected */
+  --success-light: #F0FFF4;   /* Very light green */
+  --danger: #E53E3E;          /* Alert red - threats/danger */
+  --danger-light: #FED7D7;    /* Light red */
+  --warning: #D69E2E;         /* Warning amber */
+  --warning-light: #FFFBEB;   /* Light amber */
+  --info: #3182CE;            /* Information blue */
+  --info-light: #EBF8FF;      /* Light blue */
+  
+  /* Trust and security indicators */
+  --secure: #48BB78;          /* Strong green for secure elements */
+  --verified: #4299E1;        /* Blue for verified content */
+  --protected: #9F7AEA;       /* Purple for protected features */
+  
+  /* Border and dividers */
+  --border: #E2E8F0;          /* Light blue-gray borders */
+  --border-hover: #CBD5E1;    /* Medium blue-gray borders */
+  --divider: #F7FAFC;         /* Very light dividers */
+  
+  /* Enhanced shadows for depth */
+  --shadow-sm: 0 1px 3px 0 rgba(45, 55, 72, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(45, 55, 72, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(45, 55, 72, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(45, 55, 72, 0.15);
+  --shadow-cyber: 0 0 20px rgba(43, 108, 176, 0.15);
+  
+  /* Focus states */
+  --focus-ring: 0 0 0 3px rgba(43, 108, 176, 0.15);
+  
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-hindi: 'Noto Sans Devanagari', system-ui, sans-serif;
+}
+
+/* =========================
+   ENHANCED DARK THEME VARIABLES
+   Cybersecurity dark mode with professional aesthetics
+   ========================= */
+[data-theme="dark"] {
+  /* Page backgrounds - Professional dark theme */
+  --bg: #0D1421;              /* Deep navy-black background */
+  --surface: #1A202C;         /* Dark slate for cards */
+  --surface-hover: #2D3748;   /* Medium dark gray on hover */
+  
+  /* Text colors - Optimized for dark backgrounds */
+  --text: #F7FAFC;            /* Near white for main text */
+  --text-secondary: #E2E8F0;   /* Light gray for secondary text */
+  --text-muted: #A0AEC0;      /* Medium gray for muted text */
+  --heading: #FFFFFF;         /* Pure white for headings */
+  
+  /* Cybersecurity brand colors - Enhanced for dark mode */
+  --primary: #63B3ED;         /* Bright security blue */
+  --primary-hover: #4299E1;   /* Vibrant blue on hover */
+  --primary-light: #1A365D;   /* Dark blue for backgrounds */
+  --accent: #F6AD55;          /* Bright orange (saffron) */
+  --accent-hover: #ED8936;    /* Medium orange on hover */
+  --accent-light: #744210;    /* Dark orange for backgrounds */
+  
+  /* Dark mode semantic colors */
+  --success: #68D391;         /* Bright green for success */
+  --success-light: #22543D;   /* Dark green backgrounds */
+  --danger: #FC8181;          /* Bright red for alerts */
+  --danger-light: #742A2A;    /* Dark red backgrounds */
+  --warning: #F6E05E;         /* Bright yellow for warnings */
+  --warning-light: #744210;   /* Dark yellow backgrounds */
+  --info: #63B3ED;            /* Bright blue for info */
+  --info-light: #1A365D;      /* Dark blue backgrounds */
+  
+  /* Enhanced trust indicators for dark mode */
+  --secure: #68D391;          /* Bright green for secure */
+  --verified: #63B3ED;        /* Bright blue for verified */
+  --protected: #B794F6;       /* Bright purple for protected */
+  
+  /* Border and dividers - Subtle but visible */
+  --border: #4A5568;          /* Medium gray borders */
+  --border-hover: #718096;    /* Lighter gray on hover */
+  --divider: #2D3748;         /* Dark gray dividers */
+  
+  /* Enhanced dark mode shadows */
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+  --shadow-cyber: 0 0 25px rgba(99, 179, 237, 0.2);
+  
+  /* Dark mode focus states */
+  --focus-ring: 0 0 0 3px rgba(99, 179, 237, 0.4);
+}
+
+/* =========================
+   BASE LAYER - Typography & Elements
+   ========================= */
 @layer base {
+  /* Root element setup */
   html {
     scroll-behavior: smooth;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  
+
+  /* Body with theme-aware colors */
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-sans);
+    background-color: var(--bg);
+    color: var(--text);
     line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
+  /* Headings with proper contrast */
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--heading);
+    line-height: 1.25;
+    margin: 0 0 1rem 0;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    transition: color 0.3s ease;
+  }
+  
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.875rem; }
+  h3 { font-size: 1.5rem; }
+  h4 { font-size: 1.25rem; }
+  h5 { font-size: 1.125rem; }
+  h6 { font-size: 1rem; }
+
+  /* Paragraph text */
+  p {
+    color: var(--text);
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+
+  /* Links with theme colors */
+  a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  a:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+  }
+
+  /* Focus states for accessibility */
+  a:focus,
+  button:focus,
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  /* Hindi/Devanagari font support */
   .hindi {
-    font-family: 'Noto Sans Devanagari', system-ui, sans-serif;
+    font-family: var(--font-hindi);
+  }
+
+  /* Selection colors */
+  ::selection {
+    background-color: var(--primary-light);
+    color: var(--text);
   }
 }
 
+/* =========================
+   ENHANCED COMPONENT LAYER - Cybersecurity Professional Design
+   ========================= */
 @layer components {
+  /* Enhanced button system with cybersecurity aesthetics */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 1.75rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Primary button - Light blue with security feel */
   .btn-primary {
-    @apply bg-digital-orange hover:bg-deep-saffron text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl;
+    background: linear-gradient(135deg, #87CEEB, #ADD8E6);
+    color: #2D3748;
+    border-color: #87CEEB;
+    box-shadow: var(--shadow-md), var(--shadow-cyber);
   }
   
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #ADD8E6, #87CEEB);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), var(--shadow-cyber);
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-primary:hover::before {
+    left: 100%;
+  }
+
+  /* Secondary button - Light blue and trustworthy */
   .btn-secondary {
-    @apply bg-ivory hover:bg-white text-digital-orange font-semibold py-3 px-6 rounded-lg border-2 border-digital-orange transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl;
+    background: linear-gradient(135deg, #E6F3FF, #B3D9FF);
+    color: #2D3748;
+    border-color: #87CEEB;
+    box-shadow: var(--shadow-sm);
   }
   
+  .btn-secondary:hover {
+    background: linear-gradient(135deg, #B3D9FF, #87CEEB);
+    border-color: #4A90E2;
+    color: #2D3748;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Ghost button - Subtle and modern */
+  .btn-ghost {
+    background-color: transparent;
+    color: var(--primary);
+    border-color: transparent;
+  }
+  
+  .btn-ghost:hover {
+    background-color: var(--primary-light);
+    color: var(--primary-hover);
+    border-color: var(--primary);
+  }
+
+  /* Accent button - Indian saffron theme for important actions */
+  .btn-accent {
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    color: white;
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .btn-accent:hover {
+    background: linear-gradient(135deg, var(--accent-hover), var(--accent));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Success button for secure actions */
+  .btn-success {
+    background: linear-gradient(135deg, var(--success), #2F855A);
+    color: white;
+    border-color: var(--success);
+  }
+
+  .btn-success:hover {
+    background: linear-gradient(135deg, #2F855A, var(--success));
+    transform: translateY(-1px);
+  }
+
+  /* Enhanced card system with cybersecurity emphasis */
   .card {
-    @apply bg-ivory rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.875rem;
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-lg), var(--shadow-cyber);
+    transform: translateY(-4px);
+    border-color: var(--primary);
+  }
+
+  .card:hover::before {
+    opacity: 1;
+  }
+
+  /* Interactive cards with enhanced hover effects */
+  .card-interactive {
+    cursor: pointer;
+    border: 2px solid var(--border);
   }
   
-  .demographic-card {
-    @apply card p-6 text-center cursor-pointer border-2 border-transparent hover:border-peacock-blue;
+  .card-interactive:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-xl), var(--shadow-cyber);
+    transform: translateY(-6px) scale(1.02);
   }
-  
+
+  /* Security status cards */
+  .card-secure {
+    border-left: 4px solid var(--secure);
+    background: linear-gradient(135deg, var(--surface), var(--success-light));
+  }
+
+  .card-protected {
+    border-left: 4px solid var(--protected);
+    background: linear-gradient(135deg, var(--surface), #FAF5FF);
+  }
+
+  .card-verified {
+    border-left: 4px solid var(--verified);
+    background: linear-gradient(135deg, var(--surface), var(--info-light));
+  }
+
+  /* Enhanced alert system with cybersecurity context */
+  .alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid;
+    margin: 1.25rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .alert::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: currentColor;
+  }
+
+  .alert-danger {
+    background: linear-gradient(135deg, var(--danger-light), #FFF5F5);
+    border-color: var(--danger);
+    color: var(--danger);
+  }
+
+  .alert-success {
+    background: linear-gradient(135deg, var(--success-light), #F0FFF4);
+    border-color: var(--success);
+    color: var(--success);
+  }
+
+  .alert-warning {
+    background: linear-gradient(135deg, var(--warning-light), #FFFBEB);
+    border-color: var(--warning);
+    color: var(--warning);
+  }
+
+  .alert-info {
+    background: linear-gradient(135deg, var(--info-light), #F0F9FF);
+    border-color: var(--info);
+    color: var(--info);
+  }
+
+  /* Critical security alert banner */
   .alert-banner {
-    @apply bg-alert-red text-white p-4 rounded-lg shadow-lg animate-pulse-slow;
+    background: linear-gradient(135deg, var(--danger), #C53030);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: var(--shadow-lg);
+    animation: pulse 2s infinite;
   }
-  
-  .gradient-bg {
-    background: linear-gradient(135deg, #FF9933 0%, #FFFFFF 50%, #138808 100%);
+
+  /* Enhanced form components with security focus */
+  .form-group {
+    margin-bottom: 1.75rem;
   }
-  
-  .hero-gradient {
-    background: linear-gradient(135deg, rgba(255, 153, 51, 0.15) 0%, rgba(255, 255, 255, 0.9) 35%, rgba(248, 187, 217, 0.2) 65%, rgba(19, 136, 8, 0.15) 100%);
+
+  .form-label {
+    display: block;
+    font-weight: 600;
+    color: var(--heading);
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+
+  .form-input,
+  .form-textarea,
+  .form-select {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid var(--border);
+    border-radius: 0.5rem;
+    background-color: var(--surface);
+    color: var(--text);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .form-input:focus,
+  .form-textarea:focus,
+  .form-select:focus {
+    border-color: var(--primary);
+    box-shadow: var(--focus-ring), var(--shadow-md);
+    outline: none;
+    transform: translateY(-1px);
+  }
+
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* Security-themed form states */
+  .form-input.secure {
+    border-color: var(--secure);
+    background: linear-gradient(135deg, var(--surface), var(--success-light));
+  }
+
+  .form-input.warning {
+    border-color: var(--warning);
+    background: linear-gradient(135deg, var(--surface), var(--warning-light));
+  }
+
+  .form-error {
+    color: var(--danger);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .form-success {
+    color: var(--success);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* Enhanced resource item with cybersecurity styling */
+  .resource-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, var(--surface), var(--primary-light));
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .resource-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    transition: width 0.3s ease;
+  }
+
+  .resource-item:hover {
+    background: linear-gradient(135deg, var(--surface), white);
+    border-color: var(--primary);
+    transform: translateX(8px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .resource-item:hover::before {
+    width: 4px;
+  }
+
+  /* Enhanced demographic cards with Indian cultural colors */
+  .demographic-card {
+    background: linear-gradient(135deg, var(--surface), white);
+    border: 2px solid var(--border);
+    border-radius: 1rem;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .demographic-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .demographic-card:hover {
+    transform: translateY(-12px) rotate(1deg);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-xl), var(--shadow-cyber);
+  }
+
+  .demographic-card:hover::before {
+    opacity: 0.3;
+  }
+
+  /* Navigation with cybersecurity theme */
+  .nav-link {
+    color: var(--text);
+    font-weight: 500;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--primary);
+    background: linear-gradient(135deg, var(--primary-light), transparent);
+  }
+
+  .nav-link:hover::before,
+  .nav-link.active::before {
+    width: 100%;
+  }
+
+  .nav-link.active {
+    color: var(--primary);
+    background: linear-gradient(135deg, var(--primary-light), white);
+    font-weight: 600;
   }
 }
 
+/* =========================
+   ENHANCED UTILITY LAYER - Cybersecurity Design System
+   ========================= */
 @layer utilities {
-  .text-shadow {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Enhanced text color utilities */
+  .text-primary { color: var(--primary) !important; }
+  .text-primary-hover { color: var(--primary-hover) !important; }
+  .text-accent { color: var(--accent) !important; }
+  .text-saffron { color: var(--accent) !important; }
+  .text-heading { color: var(--heading) !important; }
+  .text-text { color: var(--text) !important; }
+  .text-text-secondary { color: var(--text-secondary) !important; }
+  .text-muted { color: var(--text-muted) !important; }
+  .text-success { color: var(--success) !important; }
+  .text-danger { color: var(--danger) !important; }
+  .text-warning { color: var(--warning) !important; }
+  .text-warning-red { color: var(--danger) !important; }
+  .text-secure { color: var(--secure) !important; }
+  .text-verified { color: var(--verified) !important; }
+  .text-protected { color: var(--protected) !important; }
+
+  /* Enhanced background utilities */
+  .bg-surface { background-color: var(--surface) !important; }
+  .bg-surface-hover { background-color: var(--surface-hover) !important; }
+  .bg-primary { background-color: var(--primary) !important; }
+  .bg-accent { background-color: var(--accent) !important; }
+  .bg-success { background-color: var(--success) !important; }
+  .bg-danger { background-color: var(--danger) !important; }
+  .bg-warning { background-color: var(--warning) !important; }
+
+  /* Cybersecurity gradient utilities */
+  .bg-cyber-gradient {
+    background: linear-gradient(135deg, var(--primary), var(--accent)) !important;
+  }
+
+  .bg-secure-gradient {
+    background: linear-gradient(135deg, var(--success), #2F855A) !important;
+  }
+
+  .bg-alert-gradient {
+    background: linear-gradient(135deg, var(--danger), #C53030) !important;
+  }
+
+  .bg-hero-gradient {
+    background: linear-gradient(135deg, 
+      var(--primary-light) 0%, 
+      white 25%,
+      var(--accent-light) 50%,
+      white 75%,
+      var(--info-light) 100%) !important;
+  }
+
+  /* Enhanced border utilities */
+  .border-primary { border-color: var(--primary) !important; }
+  .border-accent { border-color: var(--accent) !important; }
+  .border-success { border-color: var(--success) !important; }
+  .border-danger { border-color: var(--danger) !important; }
+  .border-cyber { 
+    border: 2px solid;
+    border-image: linear-gradient(90deg, var(--primary), var(--accent)) 1 !important;
+  }
+
+  /* Enhanced shadow utilities for cybersecurity theme */
+  .shadow-soft { box-shadow: var(--shadow-sm) !important; }
+  .shadow-medium { box-shadow: var(--shadow-md) !important; }
+  .shadow-strong { box-shadow: var(--shadow-lg) !important; }
+  .shadow-cyber { box-shadow: var(--shadow-cyber) !important; }
+  .shadow-glow { 
+    box-shadow: 0 0 30px rgba(43, 108, 176, 0.3) !important; 
+  }
+
+  /* Text decoration and effects */
+  .text-shadow { 
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important; 
   }
   
-  .backdrop-blur-light {
-    backdrop-filter: blur(8px);
-    background-color: rgba(255, 255, 255, 0.95);
+  .text-glow { 
+    text-shadow: 0 0 20px var(--primary) !important; 
+  }
+
+  /* Enhanced truncation utilities */
+  .truncate-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+  .truncate-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .truncate-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  /* Animation utilities */
+  .animate-cyber-pulse {
+    animation: cyberPulse 2s ease-in-out infinite;
+  }
+
+  .animate-secure-bounce {
+    animation: secureBounce 1s ease-in-out infinite;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.6s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.6s ease-out;
+  }
+
+  /* Hover effects */
+  .hover-lift:hover {
+    transform: translateY(-4px) !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05) !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 25px rgba(43, 108, 176, 0.4) !important;
+    transition: box-shadow 0.3s ease !important;
+  }
+
+  /* Security status utilities */
+  .is-secure {
+    border-left: 4px solid var(--secure) !important;
+    background: linear-gradient(135deg, var(--surface), var(--success-light)) !important;
+  }
+
+  .is-protected {
+    border-left: 4px solid var(--protected) !important;
+    background: linear-gradient(135deg, var(--surface), #FAF5FF) !important;
+  }
+
+  .is-verified {
+    border-left: 4px solid var(--verified) !important;
+    background: linear-gradient(135deg, var(--surface), var(--info-light)) !important;
+  }
+
+  .is-vulnerable {
+    border-left: 4px solid var(--danger) !important;
+    background: linear-gradient(135deg, var(--surface), var(--danger-light)) !important;
+  }
+
+  /* Spacing utilities for consistent design */
+  .space-cyber {
+    margin: 2rem 0 !important;
+  }
+
+  .space-section {
+    margin: 4rem 0 !important;
+  }
+
+  .space-hero {
+    margin: 6rem 0 !important;
   }
 }
 
-/* Custom scrollbar */
+/* =========================
+   ENHANCED LAYOUT SECTIONS - Cybersecurity Professional Design
+   ========================= */
+
+/* Hero section with enhanced cybersecurity aesthetics */
+.hero {
+  padding: 5rem 2rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, 
+    var(--primary-light) 0%, 
+    white 25%,
+    var(--accent-light) 50%,
+    white 75%,
+    var(--info-light) 100%);
+  display: grid;
+  grid-template-columns: 1fr 450px;
+  gap: 3rem;
+  align-items: center;
+  margin: 2rem 0;
+  border: 2px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(43, 108, 176, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(237, 137, 54, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg,
+    rgba(43, 108, 176, 0.15) 0%,
+    rgba(173, 216, 255, 0.3) 25%,
+    rgba(237, 137, 54, 0.15) 50%,
+    rgba(255, 241, 210, 0.3) 75%,
+    rgba(56, 161, 105, 0.15) 100%);
+  color: #1A202C;
+}
+
+.quick-access-gradient {
+  background: linear-gradient(135deg, var(--primary-light), var(--surface), var(--accent-light)) !important;
+}
+
+.footer-gradient {
+  background: linear-gradient(135deg, 
+    var(--surface) 0%, 
+    var(--primary-light) 20%, 
+    var(--surface) 50%, 
+    var(--accent-light) 80%, 
+    var(--surface) 100%) !important;
+  border-top: 3px solid var(--primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(43, 108, 176, 0.05) 25%, 
+    rgba(237, 137, 54, 0.05) 50%, 
+    rgba(43, 108, 176, 0.05) 75%, 
+    transparent 100%);
+  animation: cyber-pulse 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes cyber-pulse {
+  0%, 100% { opacity: 0.3; transform: translateX(-10px); }
+  50% { opacity: 0.7; transform: translateX(10px); }
+}
+
+@media (max-width: 980px) {
+  .hero { 
+    grid-template-columns: 1fr; 
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+}
+
+/* Enhanced footer with cybersecurity branding */
+.site-footer {
+  background: linear-gradient(135deg, var(--surface), var(--primary-light));
+  border-top: 3px solid;
+  border-image: linear-gradient(90deg, var(--primary), var(--accent)) 1;
+  padding: 4rem 1rem 2rem;
+  margin-top: 5rem;
+  color: var(--text-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 0% 100%, rgba(43, 108, 176, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 100% 0%, rgba(237, 137, 54, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Enhanced grid layouts with spacing */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.grid-5 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .grid-4, .grid-5 { 
+    grid-template-columns: repeat(3, 1fr); 
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-4, .grid-5 { 
+    grid-template-columns: 1fr; 
+    gap: 1.5rem;
+  }
+}
+
+/* Section containers with enhanced styling */
+.section-container {
+  max-width: 7xl;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.section-hero {
+  padding: 6rem 1rem;
+  background: linear-gradient(135deg, var(--bg), var(--primary-light));
+}
+
+.section-features {
+  padding: 5rem 1rem;
+  background: var(--surface);
+}
+
+.section-stats {
+  padding: 4rem 1rem;
+  background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+}
+
+.section-testimonials {
+  padding: 5rem 1rem;
+  background: var(--bg);
+}
+
+/* Enhanced content sections */
+.content-wrapper {
+  max-width: 4xl;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+/* Status indicators for cybersecurity features */
+.status-secure {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background: linear-gradient(135deg, var(--success-light), var(--success));
+  color: white;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-protected {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background: linear-gradient(135deg, #E9D5FF, var(--protected));
+  color: white;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background: linear-gradient(135deg, var(--info-light), var(--verified));
+  color: white;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-alert {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background: linear-gradient(135deg, var(--danger-light), var(--danger));
+  color: white;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  animation: pulse 2s infinite;
+}
+
+/* =========================
+   SCROLLBAR THEMING
+   ========================= */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #FF6600;
-  border-radius: 4px;
+  background: linear-gradient(180deg, var(--primary), var(--primary-hover));
+  border-radius: 6px;
+  border: 2px solid var(--bg);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #FF7722;
+  background: linear-gradient(180deg, var(--primary-hover), var(--primary));
 }
 
-/* Accessibility improvements */
+/* =========================
+   THEME TRANSITION EFFECTS
+   ========================= */
+* {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+/* Dark mode overrides for Tailwind classes */
+[data-theme="dark"] .bg-white {
+  background-color: var(--surface) !important;
+}
+
+[data-theme="dark"] .text-gray-900 {
+  color: var(--text) !important;
+}
+
+[data-theme="dark"] .text-gray-700 {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .text-gray-600 {
+  color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .bg-gray-50 {
+  background-color: var(--surface) !important;
+}
+
+[data-theme="dark"] .bg-gray-100 {
+  background-color: var(--surface-hover) !important;
+}
+
+[data-theme="dark"] .border-gray-200 {
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .border-gray-300 {
+  border-color: var(--border-hover) !important;
+}
+
+/* =========================
+   ENHANCED ANIMATIONS & KEYFRAMES - Cybersecurity Theme
+   ========================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes cyberPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(43, 108, 176, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 20px 10px rgba(43, 108, 176, 0.1);
+    transform: scale(1.02);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(43, 108, 176, 0);
+    transform: scale(1);
+  }
+}
+
+@keyframes secureBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes alertPulse {
+  0% {
+    background: var(--danger);
+  }
+  50% {
+    background: #C53030;
+  }
+  100% {
+    background: var(--danger);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out;
+}
+
+/* Staggered animations for multiple elements */
+.animate-stagger-1 {
+  animation: fadeIn 0.6s ease-out 0.1s both;
+}
+
+.animate-stagger-2 {
+  animation: fadeIn 0.6s ease-out 0.2s both;
+}
+
+.animate-stagger-3 {
+  animation: fadeIn 0.6s ease-out 0.3s both;
+}
+
+.animate-stagger-4 {
+  animation: fadeIn 0.6s ease-out 0.4s both;
+}
+
+.animate-stagger-5 {
+  animation: fadeIn 0.6s ease-out 0.5s both;
+}
+
+/* Theme toggle specific animations */
+.theme-toggle-icon {
+  transition: transform 0.4s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.theme-toggle-entering {
+  transform: rotate(180deg) scale(0.8);
+  opacity: 0;
+}
+
+.theme-toggle-exiting {
+  transform: rotate(-180deg) scale(0.8);
+  opacity: 0;
+}
+
+/* =========================
+   ENHANCED THEME TRANSITION EFFECTS
+   ========================= */
+* {
+  transition-property: background-color, border-color, color, box-shadow, transform;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Specific elements with enhanced transitions */
+.card, .btn, .nav-link, .resource-item, .demographic-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark mode overrides for Tailwind classes with cybersecurity focus */
+[data-theme="dark"] .bg-white {
+  background-color: var(--surface) !important;
+}
+
+[data-theme="dark"] .text-gray-900 {
+  color: var(--text) !important;
+}
+
+[data-theme="dark"] .text-gray-700 {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .text-gray-600 {
+  color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .bg-gray-50 {
+  background-color: var(--surface) !important;
+}
+
+[data-theme="dark"] .bg-gray-100 {
+  background-color: var(--surface-hover) !important;
+}
+
+[data-theme="dark"] .border-gray-200 {
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .border-gray-300 {
+  border-color: var(--border-hover) !important;
+}
+
+/* Dark mode overrides for colored backgrounds */
+[data-theme="dark"] .bg-red-50 {
+  background-color: rgba(254, 215, 215, 0.1) !important;
+}
+
+[data-theme="dark"] .bg-green-50 {
+  background-color: rgba(240, 255, 244, 0.1) !important;
+}
+
+/* Ensure text visibility in footer and other sections */
+[data-theme="dark"] .text-gray-300 {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .text-saffron {
+  color: var(--accent) !important;
+}
+
+[data-theme="dark"] .text-warning-red {
+  color: var(--danger) !important;
+}
+
+/* Additional dark mode overrides for gray colors */
+[data-theme="dark"] .bg-gray-200 {
+  background-color: var(--surface) !important;
+}
+
+[data-theme="dark"] .text-gray-700 {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .hover\:bg-gray-50:hover {
+  background-color: var(--surface-hover) !important;
+}
+
+[data-theme="dark"] .hover\:bg-gray-100:hover {
+  background-color: var(--surface) !important;
+}
+
+[data-theme="dark"] .hover\:bg-gray-200:hover {
+  background-color: var(--surface-hover) !important;
+}
+
+/* Additional text color overrides for complete theme coverage */
+[data-theme="dark"] .text-gray-500 {
+  color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .text-gray-800 {
+  color: var(--text-secondary) !important;
+}
+
+/* Enhanced dark mode for specific cybersecurity elements */
+[data-theme="dark"] .hero-gradient {
+  background: linear-gradient(135deg,
+    rgba(99, 179, 237, 0.25) 0%,
+    rgba(26, 32, 44, 0.8) 25%,
+    rgba(246, 173, 85, 0.25) 50%,
+    rgba(45, 55, 72, 0.8) 75%,
+    rgba(104, 211, 145, 0.25) 100%) !important;
+  color: #F7FAFC !important;
+}
+
+[data-theme="dark"] .quick-access-gradient {
+  background: linear-gradient(135deg, var(--primary-light), var(--surface), var(--accent-light)) !important;
+}
+
+[data-theme="dark"] .footer-gradient {
+  background: linear-gradient(135deg, 
+    var(--surface) 0%, 
+    var(--primary-light) 20%, 
+    var(--surface) 50%, 
+    var(--accent-light) 80%, 
+    var(--surface) 100%) !important;
+  border-top: 3px solid var(--primary);
+}
+
+[data-theme="dark"] .footer-gradient::before {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(99, 179, 237, 0.1) 25%, 
+    rgba(246, 173, 85, 0.1) 50%, 
+    rgba(99, 179, 237, 0.1) 75%, 
+    transparent 100%);
+}
+
+[data-theme="dark"] .shadow-cyber {
+  box-shadow: 0 0 25px rgba(99, 179, 237, 0.3) !important;
+}
+
+[data-theme="dark"] .text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* =========================
+   ENHANCED SCROLLBAR THEMING - Cybersecurity Style
+   ========================= */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-radius: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary), var(--accent));
+  border-radius: 7px;
+  border: 2px solid var(--bg);
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--primary-hover), var(--accent-hover));
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--bg);
+}
+
+/* =========================
+   PRINT STYLES - Professional Documentation
+   ========================= */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt !important;
+  }
+  
+  .card {
+    border: 1px solid #333 !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+  }
+  
+  .btn {
+    border: 1px solid #333 !important;
+    background: transparent !important;
+    color: black !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: black !important;
+    page-break-after: avoid;
+  }
+
+  .hero {
+    background: white !important;
+    border: 2px solid #333 !important;
+  }
+
+  .alert {
+    border: 1px solid #333 !important;
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* =========================
+   ACCESSIBILITY ENHANCEMENTS
+   ========================= */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
 
-/* High contrast mode */
+/* High contrast mode support */
 @media (prefers-contrast: high) {
+  :root {
+    --border: #000000;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
   .card {
-    border: 2px solid #000;
+    border-width: 2px !important;
+  }
+
+  .btn {
+    border-width: 2px !important;
+  }
+}
+
+/* =========================
+   END OF ENHANCED CYBERSAFE INDIA CSS
+   Professional cybersecurity design system
+   Total lines: 1000+ with comprehensive theming
+   ========================= */
+
+/* =========================
+   PRINT STYLES
+   ========================= */
+@media print {
+  .no-print {
+    display: none !important;
   }
   
-  .btn-primary {
-    border: 2px solid #000;
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .card {
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+  }
+  
+  .btn {
+    border: 1px solid #ccc !important;
   }
 }
 
-/* Focus indicators */
-button:focus,
-a:focus,
-input:focus,
-select:focus,
-textarea:focus {
-  outline: 3px solid #0066CC;
-  outline-offset: 2px;
-}
-
-/* Enhanced color effects */
-.color-gradient-blue {
-  background: linear-gradient(135deg, #004F9F 0%, #0066CC 50%, #0077EE 100%);
-}
-
-.drop-shadow {
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-}
-
-.drop-shadow-lg {
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
-}
-
-/* Glass morphism for cards */
-.glass-card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
+/* =========================
+   END OF CYBERSAFE INDIA CSS
+   Total lines: 400+ with comprehensive theming
+   ========================= */

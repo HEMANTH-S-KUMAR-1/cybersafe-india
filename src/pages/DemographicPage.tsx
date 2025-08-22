@@ -155,9 +155,9 @@ const DemographicPage: React.FC = () => {
 
   if (!data) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-surface flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Category Not Found</h1>
+          <h1 className="text-2xl font-bold text-heading mb-4">Category Not Found</h1>
           <Link to="/" className="btn-primary">
             Return to Home
           </Link>
@@ -169,12 +169,12 @@ const DemographicPage: React.FC = () => {
   const IconComponent = data.icon;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-surface">
       {/* Hero Section */}
       <div className="hero-gradient py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Link to="/" className="inline-flex items-center text-cyber-blue hover:text-blue-700 mb-6">
+            <Link to="/" className="inline-flex items-center text-primary hover:text-primary-hover mb-6">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Home
             </Link>
@@ -183,11 +183,11 @@ const DemographicPage: React.FC = () => {
               <IconComponent className="h-10 w-10 text-white" />
             </div>
             
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-heading mb-4">
               Cybersecurity for {data.title}
             </h1>
-            <p className="hindi text-2xl text-gray-600 mb-6">{data.hindi} के लिए साइबर सुरक्षा</p>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="hindi text-2xl text-text-secondary mb-6">{data.hindi} के लिए साइबर सुरक्षा</p>
+            <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
               {data.description}
             </p>
           </div>
@@ -200,7 +200,7 @@ const DemographicPage: React.FC = () => {
           <div className="lg:col-span-2 space-y-8">
             {/* Common Threats */}
             <div className="card p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+              <h2 className="text-2xl font-bold text-heading mb-6 flex items-center">
                 <AlertTriangle className="h-6 w-6 text-warning-red mr-3" />
                 Common Threats You Face
               </h2>
@@ -208,7 +208,7 @@ const DemographicPage: React.FC = () => {
                 {data.commonThreats.map((threat, index) => (
                   <div key={index} className="flex items-center space-x-3 p-3 bg-red-50 rounded-lg">
                     <Shield className="h-5 w-5 text-warning-red flex-shrink-0" />
-                    <span className="text-gray-800 text-sm">{threat}</span>
+                    <span className="text-text text-sm">{threat}</span>
                   </div>
                 ))}
               </div>
@@ -216,7 +216,7 @@ const DemographicPage: React.FC = () => {
 
             {/* Safety Tips */}
             <div className="card p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+              <h2 className="text-2xl font-bold text-heading mb-6 flex items-center">
                 <CheckCircle className="h-6 w-6 text-success-green mr-3" />
                 Essential Safety Tips
               </h2>
@@ -224,7 +224,7 @@ const DemographicPage: React.FC = () => {
                 {data.tips.map((tip, index) => (
                   <div key={index} className="flex items-start space-x-3 p-4 bg-green-50 rounded-lg">
                     <CheckCircle className="h-5 w-5 text-success-green flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-800 leading-relaxed">{tip}</span>
+                    <span className="text-text leading-relaxed">{tip}</span>
                   </div>
                 ))}
               </div>
@@ -232,28 +232,28 @@ const DemographicPage: React.FC = () => {
 
             {/* Interactive Learning */}
             <div className="card p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                <PlayCircle className="h-6 w-6 text-cyber-blue mr-3" />
+              <h2 className="text-2xl font-bold text-heading mb-6 flex items-center">
+                <PlayCircle className="h-6 w-6 text-primary mr-3" />
                 Interactive Learning Modules
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-6 border border-gray-200 rounded-lg hover:shadow-lg transition-shadow">
-                  <div className="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                    <BookOpen className="h-6 w-6 text-blue-600" />
+                <div className="p-6 border border-border rounded-lg hover:shadow-lg transition-shadow">
+                  <div className="bg-primary-light w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                    <BookOpen className="h-6 w-6 text-primary" />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Basic Security Course</h3>
-                  <p className="text-gray-600 text-sm mb-4">Tailored for your specific needs and experience level</p>
+                  <h3 className="text-lg font-semibold text-heading mb-2">Basic Security Course</h3>
+                  <p className="text-text-secondary text-sm mb-4">Tailored for your specific needs and experience level</p>
                   <button className="btn-primary text-sm px-4 py-2">
                     Start Learning
                   </button>
                 </div>
                 
-                <div className="p-6 border border-gray-200 rounded-lg hover:shadow-lg transition-shadow">
-                  <div className="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                    <Shield className="h-6 w-6 text-green-600" />
+                <div className="p-6 border border-border rounded-lg hover:shadow-lg transition-shadow">
+                  <div className="bg-success-light w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                    <Shield className="h-6 w-6 text-success" />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Practical Scenarios</h3>
-                  <p className="text-gray-600 text-sm mb-4">Real-world examples and how to handle them</p>
+                  <h3 className="text-lg font-semibold text-heading mb-2">Practical Scenarios</h3>
+                  <p className="text-text-secondary text-sm mb-4">Real-world examples and how to handle them</p>
                   <button className="btn-primary text-sm px-4 py-2">
                     Practice Now
                   </button>
@@ -266,7 +266,7 @@ const DemographicPage: React.FC = () => {
           <div className="space-y-6">
             {/* Quick Actions */}
             <div className="card p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+              <h3 className="text-lg font-semibold text-heading mb-4">Quick Actions</h3>
               <div className="space-y-3">
                 <Link to="/respond" className="w-full btn-primary text-center block">
                   <AlertTriangle className="h-4 w-4 mr-2 inline" />
@@ -285,12 +285,12 @@ const DemographicPage: React.FC = () => {
 
             {/* Tailored Resources */}
             <div className="card p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Tailored Resources</h3>
+              <h3 className="text-lg font-semibold text-heading mb-4">Tailored Resources</h3>
               <div className="space-y-4">
                 {data.resources.map((resource, index) => (
-                  <div key={index} className="p-4 bg-gray-50 rounded-lg">
-                    <h4 className="font-medium text-gray-900 mb-2">{resource.title}</h4>
-                    <div className="flex items-center justify-between text-sm text-gray-600">
+                  <div key={index} className="p-4 bg-surface-hover rounded-lg">
+                    <h4 className="font-medium text-heading mb-2">{resource.title}</h4>
+                    <div className="flex items-center justify-between text-sm text-text-secondary">
                       <span>{resource.type}</span>
                       <span>
                         {'size' in resource && resource.size}

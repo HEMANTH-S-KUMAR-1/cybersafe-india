@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Shield, Menu, X, Volume2 } from 'lucide-react';
 import LanguageSelector from '../Common/LanguageSelector';
+import ThemeToggle from '../Common/ThemeToggle';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,9 +57,13 @@ const Header: React.FC = () => {
 
   return (
     <header 
-      className={`bg-white sticky top-0 z-50 backdrop-blur-light transition-shadow duration-300 ${
+      className={`bg-surface sticky top-0 z-50 backdrop-blur-light transition-shadow duration-300 border-b border-border ${
         isScrolled ? 'shadow-lg' : ''
       }`}
+      style={{
+        backgroundColor: 'var(--surface)',
+        borderColor: 'var(--border)'
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
@@ -93,12 +98,13 @@ const Header: React.FC = () => {
 
           {/* Accessibility Controls */}
           <div className="hidden md:flex items-center space-x-4">
+            <ThemeToggle />
             <button
               onClick={toggleVoice}
               className={`p-2 rounded-lg transition-colors ${
                 isVoiceEnabled
-                  ? 'bg-cyber-blue text-white'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  ? 'bg-primary text-white'
+                  : 'bg-surface-hover text-text-secondary hover:bg-surface'
               }`}
               title="Voice narration"
               aria-label="Toggle voice narration"
@@ -111,7 +117,7 @@ const Header: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100"
+            className="md:hidden p-2 rounded-lg hover:bg-surface-hover"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-expanded={isMenuOpen}
             aria-label="Toggle menu"
@@ -131,7 +137,11 @@ const Header: React.FC = () => {
         <div 
           id="mobile-menu"
           ref={menuRef}
-          className="md:hidden bg-white border-t animate-slide-up"
+          className="md:hidden border-t animate-slide-up"
+          style={{
+            backgroundColor: 'var(--surface)',
+            borderColor: 'var(--border)'
+          }}
           aria-label="Mobile Navigation"
         >
           <div className="px-4 pt-2 pb-3 space-y-1">
@@ -142,7 +152,7 @@ const Header: React.FC = () => {
                 className={`block px-3 py-2 text-base font-medium rounded-md transition-colors ${
                   location.pathname === item.path
                     ? 'text-cyber-blue bg-blue-50'
-                    : 'text-gray-700 hover:text-cyber-blue hover:bg-gray-50'
+                    : 'text-text-secondary hover:text-primary hover:bg-surface-hover'
                 }`}
                 aria-current={location.pathname === item.path ? 'page' : undefined}
               >
@@ -151,19 +161,22 @@ const Header: React.FC = () => {
               </Link>
             ))}
             <div className="flex items-center justify-between px-3 py-2">
-              <button
-                onClick={toggleVoice}
-                className={`flex items-center space-x-2 p-2 rounded-lg transition-colors ${
-                  isVoiceEnabled
-                    ? 'bg-cyber-blue text-white'
-                    : 'bg-gray-100 text-gray-600'
-                }`}
-                aria-pressed={isVoiceEnabled}
-                aria-label="Toggle voice narration"
-              >
-                <Volume2 className="h-5 w-5" aria-hidden="true" />
-                <span>Voice</span>
-              </button>
+              <div className="flex items-center space-x-2">
+                <ThemeToggle />
+                <button
+                  onClick={toggleVoice}
+                  className={`flex items-center space-x-2 p-2 rounded-lg transition-colors ${
+                    isVoiceEnabled
+                      ? 'bg-primary text-white'
+                      : 'bg-surface-hover text-text-secondary'
+                  }`}
+                  aria-pressed={isVoiceEnabled}
+                  aria-label="Toggle voice narration"
+                >
+                  <Volume2 className="h-5 w-5" aria-hidden="true" />
+                  <span>Voice</span>
+                </button>
+              </div>
               <LanguageSelector />
             </div>
           </div>
