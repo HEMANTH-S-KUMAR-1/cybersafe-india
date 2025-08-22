@@ -1,21 +1,47 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
 import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
-import HomePage from './pages/HomePage';
-import LearnPage from './pages/LearnPage';
-import RespondPage from './pages/RespondPage';
-import CommunityPage from './pages/CommunityPage';
-import ResourcesPage from './pages/ResourcesPage';
-import DemographicPage from './pages/DemographicPage';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import TermsOfService from './pages/TermsOfService';
+
+// Lazy load page components for better performance
+const HomePage = lazy(() => import('./pages/HomePage'));
+const LearnPage = lazy(() => import('./pages/LearnPage'));
+const RespondPage = lazy(() => import('./pages/RespondPage'));
+const CommunityPage = lazy(() => import('./pages/CommunityPage'));
+const ResourcesPage = lazy(() => import('./pages/ResourcesPage'));
+const DemographicPage = lazy(() => import('./pages/DemographicPage'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsOfService = lazy(() => import('./pages/TermsOfService'));
+
+// Loading component for Suspense fallback
+const PageLoading = () => (
+  <div className="flex items-center justify-center min-h-[60vh]">
+    <div className="animate-pulse text-cyber-blue font-bold">
+      Loading...
+    </div>
+  </div>
+);
+
+// Layout component with header and footer
+const Layout = () => {
+  return (
+    <>
+      <Header />
+      <main className="min-h-[60vh]">
+        <Suspense fallback={<PageLoading />}>
+          <Outlet />
+        </Suspense>
+      </main>
+      <Footer />
+    </>
+  );
+};
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
-      <main>
-        <Routes>
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      <Routes>
+        <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/learn" element={<LearnPage />} />
           <Route path="/respond" element={<RespondPage />} />
@@ -24,9 +50,8 @@ function App() {
           <Route path="/demographic/:type" element={<DemographicPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
-        </Routes>
-      </main>
-      <Footer />
+        </Route>
+      </Routes>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Shield, Menu, X, Volume2 } from 'lucide-react';
 import LanguageSelector from '../Common/LanguageSelector';
@@ -6,7 +6,9 @@ import LanguageSelector from '../Common/LanguageSelector';
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVoiceEnabled, setIsVoiceEnabled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const navItems = [
     { path: '/', label: 'Home', hindi: 'होम' },
@@ -16,6 +18,36 @@ const Header: React.FC = () => {
     { path: '/resources', label: 'Resources', hindi: 'संसाधन' },
   ];
 
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close menu on click outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
+  // Close menu on route change
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location]);
+
   const toggleVoice = () => {
     setIsVoiceEnabled(!isVoiceEnabled);
     // Voice narration toggle logic would be implemented here
@@ -23,12 +55,16 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50 backdrop-blur-light">
+    <header 
+      className={`bg-white sticky top-0 z-50 backdrop-blur-light transition-shadow duration-300 ${
+        isScrolled ? 'shadow-lg' : ''
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
-            <Shield className="h-8 w-8 text-cyber-blue" />
+          <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity" aria-label="CyberSafe India Home">
+            <Shield className="h-8 w-8 text-cyber-blue" aria-hidden="true" />
             <div>
               <span className="text-xl font-bold text-cyber-blue">CyberSafe</span>
               <span className="text-xl font-bold text-saffron ml-1">India</span>
@@ -37,7 +73,7 @@ const Header: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-8" aria-label="Main Navigation">
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -47,6 +83,7 @@ const Header: React.FC = () => {
                     ? 'text-cyber-blue border-b-2 border-cyber-blue pb-1'
                     : 'text-gray-700'
                 }`}
+                aria-current={location.pathname === item.path ? 'page' : undefined}
               >
                 <span className="block">{item.label}</span>
                 <span className="block text-xs hindi opacity-75">{item.hindi}</span>
@@ -65,26 +102,38 @@ const Header: React.FC = () => {
               }`}
               title="Voice narration"
               aria-label="Toggle voice narration"
+              aria-pressed={isVoiceEnabled}
             >
-              <Volume2 className="h-5 w-5" />
+              <Volume2 className="h-5 w-5" aria-hidden="true" />
             </button>
             <LanguageSelector />
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-expanded={isMenuOpen}
             aria-label="Toggle menu"
+            aria-controls="mobile-menu"
           >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isMenuOpen ? (
+              <X className="h-6 w-6" aria-hidden="true" />
+            ) : (
+              <Menu className="h-6 w-6" aria-hidden="true" />
+            )}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t animate-slide-up">
+        <div 
+          id="mobile-menu"
+          ref={menuRef}
+          className="md:hidden bg-white border-t animate-slide-up"
+          aria-label="Mobile Navigation"
+        >
           <div className="px-4 pt-2 pb-3 space-y-1">
             {navItems.map((item) => (
               <Link
@@ -95,7 +144,7 @@ const Header: React.FC = () => {
                     ? 'text-cyber-blue bg-blue-50'
                     : 'text-gray-700 hover:text-cyber-blue hover:bg-gray-50'
                 }`}
-                onClick={() => setIsMenuOpen(false)}
+                aria-current={location.pathname === item.path ? 'page' : undefined}
               >
                 <span className="block">{item.label}</span>
                 <span className="block text-sm hindi opacity-75">{item.hindi}</span>
@@ -109,8 +158,10 @@ const Header: React.FC = () => {
                     ? 'bg-cyber-blue text-white'
                     : 'bg-gray-100 text-gray-600'
                 }`}
+                aria-pressed={isVoiceEnabled}
+                aria-label="Toggle voice narration"
               >
-                <Volume2 className="h-5 w-5" />
+                <Volume2 className="h-5 w-5" aria-hidden="true" />
                 <span>Voice</span>
               </button>
               <LanguageSelector />

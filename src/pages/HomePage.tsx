@@ -23,8 +23,8 @@ const HomePage: React.FC = () => {
       title: 'Students',
       hindi: 'छात्र',
       description: 'Safe online learning and social media practices',
-      color: 'bg-blue-500',
-      hoverColor: 'hover:bg-blue-600',
+      color: 'bg-peacock-blue',
+      hoverColor: 'hover:bg-indigo-blue',
     },
     {
       id: 'professionals',
@@ -32,8 +32,8 @@ const HomePage: React.FC = () => {
       title: 'Professionals',
       hindi: 'पेशेवर',
       description: 'Workplace cybersecurity and data protection',
-      color: 'bg-green-500',
-      hoverColor: 'hover:bg-green-600',
+      color: 'bg-forest-green',
+      hoverColor: 'hover:bg-safe-green',
     },
     {
       id: 'homemakers',
@@ -41,8 +41,8 @@ const HomePage: React.FC = () => {
       title: 'Homemakers',
       hindi: 'गृहिणी',
       description: 'Online shopping and family safety tips',
-      color: 'bg-pink-500',
-      hoverColor: 'hover:bg-pink-600',
+      color: 'bg-lotus-pink',
+      hoverColor: 'hover:bg-rose-gold',
     },
     {
       id: 'rural-users',
@@ -50,8 +50,8 @@ const HomePage: React.FC = () => {
       title: 'Rural Users',
       hindi: 'ग्रामीण उपयोगकर्ता',
       description: 'Simple cyber safety for new internet users',
-      color: 'bg-orange-500',
-      hoverColor: 'hover:bg-orange-600',
+      color: 'bg-terracotta',
+      hoverColor: 'hover:bg-henna',
     },
     {
       id: 'senior-citizens',
@@ -59,8 +59,8 @@ const HomePage: React.FC = () => {
       title: 'Senior Citizens',
       hindi: 'वरिष्ठ नागरिक',
       description: 'Easy-to-understand security guidance',
-      color: 'bg-purple-500',
-      hoverColor: 'hover:bg-purple-600',
+      color: 'bg-royal-purple',
+      hoverColor: 'hover:bg-indigo-blue',
     },
   ];
 
@@ -106,7 +106,7 @@ const HomePage: React.FC = () => {
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 text-shadow animate-slide-up">
               Stay Safe Online
-              <span className="block text-cyber-blue mt-2">Cyber Awareness for All</span>
+              <span className="block text-digital-orange mt-2">Cyber Awareness for All</span>
             </h1>
             <p className="hindi text-2xl md:text-3xl font-semibold text-gray-700 mb-8 animate-slide-up">
               साइबर सुरक्षा सभी के लिए
@@ -135,7 +135,7 @@ const HomePage: React.FC = () => {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {quickStats.map((stat, index) => (
               <div key={index} className="text-center animate-slide-up">
-                <div className="text-3xl md:text-4xl font-bold text-cyber-blue mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-digital-orange mb-2">
                   {stat.number}
                 </div>
                 <div className="text-gray-600 font-medium">{stat.label}</div>
@@ -174,7 +174,7 @@ const HomePage: React.FC = () => {
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">{demo.title}</h3>
                   <p className="hindi text-sm text-gray-600 mb-3">{demo.hindi}</p>
                   <p className="text-gray-600 text-sm leading-relaxed">{demo.description}</p>
-                  <ArrowRight className="h-5 w-5 text-cyber-blue mx-auto mt-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="h-5 w-5 text-digital-orange mx-auto mt-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               );
             })}
@@ -197,9 +197,9 @@ const HomePage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {latestAlerts.map((alert) => (
-              <div key={alert.id} className="card p-6 border-l-4 border-l-warning-red">
+              <div key={alert.id} className="card p-6 border-l-4 border-l-alert-red">
                 <div className="flex items-center mb-3">
-                  <AlertTriangle className="h-5 w-5 text-warning-red mr-2" />
+                  <AlertTriangle className="h-5 w-5 text-alert-red mr-2" />
                   <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                     alert.type === 'high' ? 'bg-red-100 text-red-800' :
                     alert.type === 'medium' ? 'bg-yellow-100 text-yellow-800' :
@@ -218,35 +218,43 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Quick Access */}
-      <section className="py-16 bg-cyber-blue text-white">
+      <section className="py-16 bg-gradient-to-r from-peacock-blue via-indigo-blue to-royal-purple text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Quick Access</h2>
-            <p className="hindi text-xl mb-2">त्वरित पहुंच</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 drop-shadow-lg">Quick Access</h2>
+            <p className="hindi text-xl mb-2 drop-shadow">त्वरित पहुंच</p>
             <p className="text-xl opacity-90">Get help immediately when you need it most</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link to="/learn" className="bg-white bg-opacity-10 backdrop-blur-light rounded-lg p-6 text-center hover:bg-opacity-20 transition-all group">
-              <BookOpen className="h-12 w-12 mx-auto mb-4 group-hover:scale-110 transition-transform" />
+            <Link to="/learn" className="bg-saffron bg-opacity-20 backdrop-blur-light rounded-lg p-6 text-center hover:bg-opacity-30 transition-all group shadow-lg hover:shadow-xl border border-saffron/30 hover:border-saffron/60">
+              <div className="bg-saffron/30 p-4 rounded-full inline-flex items-center justify-center mb-4 group-hover:bg-saffron group-hover:text-white transition-all">
+                <BookOpen className="h-12 w-12 group-hover:scale-110 transition-transform" />
+              </div>
               <h3 className="text-xl font-semibold mb-2">Learn</h3>
               <p className="hindi text-sm opacity-75">सीखें</p>
             </Link>
             
-            <Link to="/respond" className="bg-white bg-opacity-10 backdrop-blur-light rounded-lg p-6 text-center hover:bg-opacity-20 transition-all group">
-              <Phone className="h-12 w-12 mx-auto mb-4 group-hover:scale-110 transition-transform" />
+            <Link to="/respond" className="bg-alert-red bg-opacity-20 backdrop-blur-light rounded-lg p-6 text-center hover:bg-opacity-30 transition-all group shadow-lg hover:shadow-xl border border-alert-red/30 hover:border-alert-red/60">
+              <div className="bg-alert-red/30 p-4 rounded-full inline-flex items-center justify-center mb-4 group-hover:bg-alert-red group-hover:text-white transition-all">
+                <Phone className="h-12 w-12 group-hover:scale-110 transition-transform" />
+              </div>
               <h3 className="text-xl font-semibold mb-2">Get Help</h3>
               <p className="hindi text-sm opacity-75">सहायता</p>
             </Link>
             
-            <Link to="/community" className="bg-white bg-opacity-10 backdrop-blur-light rounded-lg p-6 text-center hover:bg-opacity-20 transition-all group">
-              <MessageSquare className="h-12 w-12 mx-auto mb-4 group-hover:scale-110 transition-transform" />
+            <Link to="/community" className="bg-forest-green bg-opacity-20 backdrop-blur-light rounded-lg p-6 text-center hover:bg-opacity-30 transition-all group shadow-lg hover:shadow-xl border border-forest-green/30 hover:border-forest-green/60">
+              <div className="bg-forest-green/30 p-4 rounded-full inline-flex items-center justify-center mb-4 group-hover:bg-forest-green group-hover:text-white transition-all">
+                <MessageSquare className="h-12 w-12 group-hover:scale-110 transition-transform" />
+              </div>
               <h3 className="text-xl font-semibold mb-2">Community</h3>
               <p className="hindi text-sm opacity-75">समुदाय</p>
             </Link>
             
-            <Link to="/resources" className="bg-white bg-opacity-10 backdrop-blur-light rounded-lg p-6 text-center hover:bg-opacity-20 transition-all group">
-              <Download className="h-12 w-12 mx-auto mb-4 group-hover:scale-110 transition-transform" />
+            <Link to="/resources" className="bg-mango-yellow bg-opacity-20 backdrop-blur-light rounded-lg p-6 text-center hover:bg-opacity-30 transition-all group shadow-lg hover:shadow-xl border border-mango-yellow/30 hover:border-mango-yellow/60">
+              <div className="bg-mango-yellow/30 p-4 rounded-full inline-flex items-center justify-center mb-4 group-hover:bg-mango-yellow group-hover:text-peacock-blue transition-all">
+                <Download className="h-12 w-12 group-hover:scale-110 transition-transform" />
+              </div>
               <h3 className="text-xl font-semibold mb-2">Resources</h3>
               <p className="hindi text-sm opacity-75">संसाधन</p>
             </Link>
@@ -260,19 +268,19 @@ const HomePage: React.FC = () => {
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Trusted by Government & Experts</h2>
           <div className="flex flex-wrap justify-center items-center gap-8 opacity-70">
             <div className="flex items-center space-x-2">
-              <CheckCircle className="h-6 w-6 text-success-green" />
+              <CheckCircle className="h-6 w-6 text-safe-green" />
               <span className="font-medium">CERT-In Verified</span>
             </div>
             <div className="flex items-center space-x-2">
-              <CheckCircle className="h-6 w-6 text-success-green" />
+              <CheckCircle className="h-6 w-6 text-safe-green" />
               <span className="font-medium">RBI Guidelines</span>
             </div>
             <div className="flex items-center space-x-2">
-              <CheckCircle className="h-6 w-6 text-success-green" />
+              <CheckCircle className="h-6 w-6 text-safe-green" />
               <span className="font-medium">Digital India Initiative</span>
             </div>
             <div className="flex items-center space-x-2">
-              <CheckCircle className="h-6 w-6 text-success-green" />
+              <CheckCircle className="h-6 w-6 text-safe-green" />
               <span className="font-medium">Cybercrime.gov.in</span>
             </div>
           </div>

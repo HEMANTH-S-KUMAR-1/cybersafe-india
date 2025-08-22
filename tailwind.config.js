@@ -7,12 +7,37 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Indian Flag Colors - Primary
         'saffron': '#FF9933',
+        'white': '#FFFFFF',
         'indian-green': '#138808',
-        'navy-blue': '#000080',
-        'cyber-blue': '#0066CC',
-        'warning-red': '#DC2626',
-        'success-green': '#059669',
+        
+        // Traditional Indian Colors
+        'deep-saffron': '#FF7722',
+        'turmeric': '#E09900',
+        'marigold': '#FFAB00',
+        'henna': '#B85450',
+        'terracotta': '#C65D07',
+        
+        // Sacred & Cultural Colors
+        'lotus-pink': '#F8BBD9',
+        'peacock-blue': '#005F69',
+        'indigo-blue': '#4B0082',
+        'royal-purple': '#663399',
+        'sandalwood': '#DEB887',
+        
+        // Nature & Heritage Colors
+        'forest-green': '#228B22',
+        'mango-yellow': '#FFCC5C',
+        'rose-gold': '#E8B4B8',
+        'coral-red': '#FF6B6B',
+        'ivory': '#FFFFF0',
+        
+        // Modern Indian Tech Colors
+        'digital-orange': '#FF6600',
+        'tech-blue': '#0066CC',
+        'safe-green': '#00AA44',
+        'alert-red': '#DC143C',
       },
       fontFamily: {
         'sans': ['Inter', 'system-ui', 'sans-serif'],

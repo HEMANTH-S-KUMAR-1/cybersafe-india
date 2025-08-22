@@ -21,23 +21,23 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-cyber-blue hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl;
+    @apply bg-digital-orange hover:bg-deep-saffron text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl;
   }
   
   .btn-secondary {
-    @apply bg-white hover:bg-gray-50 text-cyber-blue font-semibold py-3 px-6 rounded-lg border-2 border-cyber-blue transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl;
+    @apply bg-ivory hover:bg-white text-digital-orange font-semibold py-3 px-6 rounded-lg border-2 border-digital-orange transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl;
   }
   
   .card {
-    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1;
+    @apply bg-ivory rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1;
   }
   
   .demographic-card {
-    @apply card p-6 text-center cursor-pointer border-2 border-transparent hover:border-cyber-blue;
+    @apply card p-6 text-center cursor-pointer border-2 border-transparent hover:border-peacock-blue;
   }
   
   .alert-banner {
-    @apply bg-warning-red text-white p-4 rounded-lg shadow-lg animate-pulse-slow;
+    @apply bg-alert-red text-white p-4 rounded-lg shadow-lg animate-pulse-slow;
   }
   
   .gradient-bg {
@@ -45,7 +45,7 @@
   }
   
   .hero-gradient {
-    background: linear-gradient(135deg, rgba(255, 153, 51, 0.1) 0%, rgba(0, 102, 204, 0.1) 50%, rgba(19, 136, 8, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(255, 153, 51, 0.15) 0%, rgba(255, 255, 255, 0.9) 35%, rgba(248, 187, 217, 0.2) 65%, rgba(19, 136, 8, 0.15) 100%);
   }
 }
 
@@ -70,12 +70,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #0066CC;
+  background: #FF6600;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0052A3;
+  background: #FF7722;
 }
 
 /* Accessibility improvements */
@@ -106,4 +106,25 @@ select:focus,
 textarea:focus {
   outline: 3px solid #0066CC;
   outline-offset: 2px;
+}
+
+/* Enhanced color effects */
+.color-gradient-blue {
+  background: linear-gradient(135deg, #004F9F 0%, #0066CC 50%, #0077EE 100%);
+}
+
+.drop-shadow {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.drop-shadow-lg {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
+}
+
+/* Glass morphism for cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
