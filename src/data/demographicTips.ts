@@ -11,7 +11,6 @@ export interface DemographicTip {
 export interface DemographicData {
   id: string;
   name: string;
-  nameHindi: string;
   description: string;
   icon: string;
   tips: DemographicTip[];
@@ -21,7 +20,6 @@ export const demographicTipsData: Record<string, DemographicData> = {
   students: {
     id: 'students',
     name: 'Students',
-    nameHindi: 'छात्र',
     description: 'Cybersecurity tips for students and young learners',
     icon: '🎓',
     tips: [
@@ -63,7 +61,6 @@ export const demographicTipsData: Record<string, DemographicData> = {
   homemakers: {
     id: 'homemakers',
     name: 'Homemakers',
-    nameHindi: 'गृहिणी',
     description: 'Cybersecurity guidance for homemakers and family managers',
     icon: '🏠',
     tips: [
@@ -105,7 +102,6 @@ export const demographicTipsData: Record<string, DemographicData> = {
   senior_citizens: {
     id: 'senior_citizens',
     name: 'Senior Citizens',
-    nameHindi: 'वरिष्ठ नागरिक',
     description: 'Essential cybersecurity tips for senior citizens',
     icon: '👴',
     tips: [
@@ -147,7 +143,6 @@ export const demographicTipsData: Record<string, DemographicData> = {
   professionals: {
     id: 'professionals',
     name: 'Working Professionals',
-    nameHindi: 'कामकाजी व्यक्ति',
     description: 'Cybersecurity for office workers and professionals',
     icon: '💼',
     tips: [

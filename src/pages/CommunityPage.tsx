@@ -6,7 +6,6 @@ const CommunityPage: React.FC = () => {
     {
       id: 'general',
       title: 'General Discussion',
-      hindi: 'सामान्य चर्चा',
       description: 'Share experiences and ask general cybersecurity questions',
       posts: 1247,
       members: 8950,
@@ -15,7 +14,6 @@ const CommunityPage: React.FC = () => {
     {
       id: 'scam-alerts',
       title: 'Scam Alerts',
-      hindi: 'धोखाधड़ी अलर्ट',
       description: 'Report and discuss latest scam techniques',
       posts: 892,
       members: 12340,
@@ -24,7 +22,6 @@ const CommunityPage: React.FC = () => {
     {
       id: 'success-stories',
       title: 'Success Stories',
-      hindi: 'सफलता की कहानियां',
       description: 'Share how you avoided or recovered from scams',
       posts: 456,
       members: 6780,
@@ -33,7 +30,6 @@ const CommunityPage: React.FC = () => {
     {
       id: 'expert-advice',
       title: 'Expert Advice',
-      hindi: 'विशेषज्ञ सलाह',
       description: 'Get guidance from cybersecurity professionals',
       posts: 234,
       members: 4560,
@@ -119,7 +115,6 @@ const CommunityPage: React.FC = () => {
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             CyberSafe Community
           </h1>
-          <p className="hindi text-xl text-gray-600 mb-4">साइबर सुरक्षा समुदाय</p>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Connect with fellow Indians, share experiences, learn from experts, and build a safer digital community together.
           </p>
@@ -131,22 +126,18 @@ const CommunityPage: React.FC = () => {
             <div>
               <div className="text-3xl font-bold text-cyber-blue mb-2">50K+</div>
               <div className="text-gray-600">Active Members</div>
-              <div className="hindi text-sm text-gray-500">सक्रिय सदस्य</div>
             </div>
             <div>
               <div className="text-3xl font-bold text-green-500 mb-2">2.8K</div>
               <div className="text-gray-600">Success Stories</div>
-              <div className="hindi text-sm text-gray-500">सफलता की कहानियां</div>
             </div>
             <div>
               <div className="text-3xl font-bold text-purple-500 mb-2">150+</div>
               <div className="text-gray-600">Expert Sessions</div>
-              <div className="hindi text-sm text-gray-500">विशेषज्ञ सत्र</div>
             </div>
             <div>
               <div className="text-3xl font-bold text-orange-500 mb-2">Rs. 2Cr+</div>
               <div className="text-gray-600">Money Saved</div>
-              <div className="hindi text-sm text-gray-500">पैसे बचाए</div>
             </div>
           </div>
         </div>
@@ -165,7 +156,6 @@ const CommunityPage: React.FC = () => {
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900">{category.title}</h3>
-                        <p className="hindi text-sm text-gray-600">{category.hindi}</p>
                         <p className="text-gray-600 text-sm mt-1">{category.description}</p>
                       </div>
                     </div>

@@ -20,6 +20,10 @@ export const translations: Record<string, TranslationKey> = {
     en: 'Learn',
     hi: 'सीखें'
   },
+  'nav.threats': {
+    en: 'Threats',
+    hi: 'खतरे'
+  },
   'nav.respond': {
     en: 'Respond',
     hi: 'रिपोर्ट करें'
@@ -124,6 +128,17 @@ export const t = (key: string, language: string = 'en'): string => {
 // Get current language from localStorage or default to English
 export const getCurrentLanguage = (): string => {
   return localStorage.getItem('preferred-language') || 'en';
+};
+
+// Set current language and save to localStorage
+export const setLanguage = (language: string): void => {
+  localStorage.setItem('preferred-language', language);
+  
+  // Dispatch global event for language change
+  const event = new CustomEvent('languageChanged', {
+    detail: { language }
+  });
+  window.dispatchEvent(event);
 };
 
 // Check if language is RTL (right-to-left)

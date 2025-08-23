@@ -70,7 +70,6 @@
   
   /* Typography */
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-hindi: 'Noto Sans Devanagari', system-ui, sans-serif;
 }
 
 /* =========================
@@ -196,11 +195,6 @@
   select:focus {
     outline: none;
     box-shadow: var(--focus-ring);
-  }
-
-  /* Hindi/Devanagari font support */
-  .hindi {
-    font-family: var(--font-hindi);
   }
 
   /* Selection colors */
@@ -716,6 +710,7 @@
   .text-text { color: var(--text) !important; }
   .text-text-secondary { color: var(--text-secondary) !important; }
   .text-muted { color: var(--text-muted) !important; }
+  .text-text-muted { color: var(--text-muted) !important; }
   .text-success { color: var(--success) !important; }
   .text-danger { color: var(--danger) !important; }
   .text-warning { color: var(--warning) !important; }
@@ -723,6 +718,35 @@
   .text-secure { color: var(--secure) !important; }
   .text-verified { color: var(--verified) !important; }
   .text-protected { color: var(--protected) !important; }
+  
+  /* Background utility classes */
+  .bg-primary { background-color: var(--primary) !important; }
+  .bg-primary-light { background-color: var(--primary-light) !important; }
+  .bg-accent { background-color: var(--accent) !important; }
+  .bg-accent-light { background-color: var(--accent-light) !important; }
+  .bg-success { background-color: var(--success) !important; }
+  .bg-success-light { background-color: var(--success-light) !important; }
+  .bg-danger { background-color: var(--danger) !important; }
+  .bg-danger-light { background-color: var(--danger-light) !important; }
+  .bg-warning { background-color: var(--warning) !important; }
+  .bg-warning-light { background-color: var(--warning-light) !important; }
+  .bg-info { background-color: var(--info) !important; }
+  .bg-info-light { background-color: var(--info-light) !important; }
+  .bg-secure { background-color: var(--secure) !important; }
+  .bg-verified { background-color: var(--verified) !important; }
+  .bg-protected { background-color: var(--protected) !important; }
+  .bg-protected-light { background-color: rgba(159, 122, 234, 0.1) !important; }
+  
+  /* Border utility classes */
+  .border-primary { border-color: var(--primary) !important; }
+  .border-accent { border-color: var(--accent) !important; }
+  .border-success { border-color: var(--success) !important; }
+  .border-danger { border-color: var(--danger) !important; }
+  .border-warning { border-color: var(--warning) !important; }
+  .border-info { border-color: var(--info) !important; }
+  .border-secure { border-color: var(--secure) !important; }
+  .border-verified { border-color: var(--verified) !important; }
+  .border-protected { border-color: var(--protected) !important; }
 
   /* Enhanced background utilities */
   .bg-surface { background-color: var(--surface) !important; }
@@ -1524,19 +1548,6 @@
   opacity: 0;
 }
 
-/* Language Selector Enhancements */
-.lang-hi .hindi {
-  font-family: var(--font-hindi) !important;
-}
-
-.lang-en .hindi {
-  display: none;
-}
-
-.lang-hi .english-only {
-  display: none;
-}
-
 /* Language selector dropdown animations */
 .language-dropdown {
   transform-origin: top right;
@@ -2152,6 +2163,309 @@
   .btn {
     border-width: 2px !important;
   }
+}
+
+/* =========================
+   ENHANCED THREAT INTELLIGENCE THEMING
+   Professional dark/light mode with smooth transitions
+   ========================= */
+
+/* Threat severity backgrounds - Light theme */
+.threat-high {
+  background: linear-gradient(135deg, #FEF2F2, #FCA5A5) !important;
+  border-left-color: #DC2626 !important;
+  color: #7F1D1D !important;
+}
+
+.threat-medium {
+  background: linear-gradient(135deg, #FFFBEB, #FCD34D) !important;
+  border-left-color: #D97706 !important;
+  color: #92400E !important;
+}
+
+.threat-low {
+  background: linear-gradient(135deg, #EFF6FF, #93C5FD) !important;
+  border-left-color: #2563EB !important;
+  color: #1E3A8A !important;
+}
+
+/* Enhanced threat card styling */
+.threat-card {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.threat-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border-color: var(--border-hover) !important;
+}
+
+/* Safety tip styling */
+.safety-tip {
+  background: linear-gradient(135deg, var(--success-light), rgba(34, 197, 94, 0.1)) !important;
+  border: 1px solid var(--success) !important;
+  color: var(--success) !important;
+}
+
+/* Enhanced dark theme overrides for threat intelligence */
+[data-theme="dark"] .threat-high {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(239, 68, 68, 0.1)) !important;
+  border-left-color: #EF4444 !important;
+  color: #FECACA !important;
+}
+
+[data-theme="dark"] .threat-medium {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1)) !important;
+  border-left-color: #F59E0B !important;
+  color: #FEF3C7 !important;
+}
+
+[data-theme="dark"] .threat-low {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.1)) !important;
+  border-left-color: #3B82F6 !important;
+  color: #DBEAFE !important;
+}
+
+[data-theme="dark"] .safety-tip {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.1)) !important;
+  border: 1px solid var(--success) !important;
+  color: #BBF7D0 !important;
+}
+
+/* Enhanced button theming for threat intelligence */
+.threat-refresh-btn {
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover)) !important;
+  color: white !important;
+  border: none !important;
+  transition: all 0.3s ease !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.threat-refresh-btn:hover {
+  background: linear-gradient(135deg, var(--primary-hover), var(--primary)) !important;
+  box-shadow: var(--shadow-lg) !important;
+  transform: translateY(-1px) !important;
+}
+
+.threat-refresh-btn:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* Filter dropdown theming */
+.threat-filter {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+  transition: all 0.3s ease !important;
+}
+
+.threat-filter:focus {
+  border-color: var(--primary) !important;
+  box-shadow: var(--focus-ring) !important;
+}
+
+[data-theme="dark"] .threat-filter {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+/* Stats card enhancements */
+.stats-card {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  transition: all 0.3s ease !important;
+}
+
+.stats-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: var(--shadow-xl) !important;
+}
+
+/* Mini threat feed specific styling */
+.mini-threat-feed {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.mini-threat-item {
+  background: var(--surface) !important;
+  border-left: 4px solid transparent !important;
+  transition: all 0.3s ease !important;
+}
+
+.mini-threat-item:hover {
+  background: var(--surface-hover) !important;
+  transform: translateX(4px) !important;
+}
+
+/* Enhanced text contrast for accessibility */
+[data-theme="dark"] .text-gray-900 {
+  color: var(--heading) !important;
+}
+
+[data-theme="dark"] .text-gray-800 {
+  color: var(--text) !important;
+}
+
+[data-theme="dark"] .text-gray-700 {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .text-gray-600 {
+  color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .text-gray-500 {
+  color: var(--text-muted) !important;
+}
+
+/* Enhanced background colors for threat components */
+[data-theme="dark"] .bg-white {
+  background-color: var(--surface) !important;
+}
+
+[data-theme="dark"] .bg-gray-50 {
+  background-color: var(--surface) !important;
+}
+
+[data-theme="dark"] .bg-gray-100 {
+  background-color: var(--surface-hover) !important;
+}
+
+/* Special color backgrounds for threat levels in dark mode */
+[data-theme="dark"] .bg-red-50 {
+  background-color: rgba(239, 68, 68, 0.1) !important;
+}
+
+[data-theme="dark"] .bg-yellow-50 {
+  background-color: rgba(245, 158, 11, 0.1) !important;
+}
+
+[data-theme="dark"] .bg-blue-50 {
+  background-color: rgba(59, 130, 246, 0.1) !important;
+}
+
+[data-theme="dark"] .bg-green-50 {
+  background-color: rgba(34, 197, 94, 0.1) !important;
+}
+
+/* Border color enhancements */
+[data-theme="dark"] .border-gray-200 {
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .border-gray-300 {
+  border-color: var(--border-hover) !important;
+}
+
+[data-theme="dark"] .border-red-200 {
+  border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+[data-theme="dark"] .border-yellow-200 {
+  border-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+[data-theme="dark"] .border-blue-200 {
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+[data-theme="dark"] .border-green-200 {
+  border-color: rgba(34, 197, 94, 0.3) !important;
+}
+
+/* Enhanced text colors for threat severity */
+[data-theme="dark"] .text-red-800 {
+  color: #FECACA !important;
+}
+
+[data-theme="dark"] .text-yellow-800 {
+  color: #FEF3C7 !important;
+}
+
+[data-theme="dark"] .text-blue-800 {
+  color: #DBEAFE !important;
+}
+
+[data-theme="dark"] .text-green-800 {
+  color: #BBF7D0 !important;
+}
+
+/* Icon color improvements */
+[data-theme="dark"] .text-red-500 {
+  color: #EF4444 !important;
+}
+
+[data-theme="dark"] .text-yellow-500 {
+  color: #F59E0B !important;
+}
+
+[data-theme="dark"] .text-blue-500 {
+  color: #3B82F6 !important;
+}
+
+[data-theme="dark"] .text-green-600 {
+  color: #16A34A !important;
+}
+
+[data-theme="dark"] .text-red-600 {
+  color: #DC2626 !important;
+}
+
+[data-theme="dark"] .text-blue-600 {
+  color: #2563EB !important;
+}
+
+[data-theme="dark"] .text-blue-700 {
+  color: #1D4ED8 !important;
+}
+
+/* Enhanced hover states */
+[data-theme="dark"] .hover\:text-blue-800:hover {
+  color: #60A5FA !important;
+}
+
+[data-theme="dark"] .hover\:bg-blue-700:hover {
+  background-color: #1D4ED8 !important;
+}
+
+/* Loading state improvements */
+.loading-skeleton {
+  background: linear-gradient(90deg, 
+    var(--surface) 25%, 
+    var(--surface-hover) 50%, 
+    var(--surface) 75%) !important;
+  background-size: 200% 100% !important;
+  animation: skeleton-loading 1.5s infinite !important;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Enhanced focus states for accessibility */
+[data-theme="dark"] *:focus {
+  box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.4) !important;
+}
+
+/* Smooth theme transition */
+* {
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 /* =========================

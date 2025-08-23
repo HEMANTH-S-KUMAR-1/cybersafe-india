@@ -13,12 +13,13 @@ CyberSafe India is a comprehensive cybersecurity awareness platform designed to 
 
 ## ✨ Features
 
-### 🌟 Core Features
+### ✨ Core Features
 - **🎓 Interactive Learning Modules** - Comprehensive cybersecurity education
 - **🚨 Cybercrime Reporting** - Direct integration with government portals
 - **👥 Community Forum** - Connect with cybersecurity experts and peers
 - **📚 Resource Library** - Downloadable guides and toolkits
 - **🌍 Multilingual Support** - Available in 8+ Indian languages
+- **🔄 Real-time Translation** - Powered by Azure Translator with support for 13+ Indian languages
 
 ### 🎨 User Experience
 - **🌓 Dark/Light Theme** - Comfortable viewing in any environment
@@ -26,8 +27,11 @@ CyberSafe India is a comprehensive cybersecurity awareness platform designed to 
 - **♿ Accessibility** - WCAG 2.1 compliant design
 - **⚡ Performance** - Lightning-fast loading and smooth animations
 - **🎯 Demographic Personalization** - Tailored cybersecurity tips for different user groups
+- **🌐 Smart Translation** - Automatic fallback between real-time and static translations
 
 ### 🆕 Latest Features (August 2025)
+- **🔄 Azure Translator Integration** - Real-time translation with smart caching and fallback
+- **🌍 Enhanced Language Support** - 13+ Indian languages with cultural context awareness
 - **👤 Demographic-Based Content Engine** - Personalized cybersecurity tips for Students, Homemakers, Senior Citizens, and Professionals
 - **🎨 Enhanced UI/UX** - Improved card layouts and interactive components
 - **🔧 Code Quality Improvements** - ESLint configuration, TypeScript optimizations
@@ -117,10 +121,11 @@ src/
 └── index.css           # Global styles and theme variables
 ```
 
-## 🌍 Language Support
+## 🌍 Language Support & Translation
 
-CyberSafe India supports multiple Indian languages:
+CyberSafe India features advanced multilingual support with both static and real-time translation capabilities:
 
+### Supported Languages
 - 🇮🇳 **English** (Primary)
 - 🇮🇳 **Hindi** (हिंदी)
 - 🇮🇳 **Kannada** (ಕನ್ನಡ)
@@ -129,6 +134,50 @@ CyberSafe India supports multiple Indian languages:
 - 🇮🇳 **Bengali** (বাংলা)
 - 🇮🇳 **Gujarati** (ગુજરાતી)
 - 🇮🇳 **Marathi** (मराठी)
+- 🇮🇳 **Malayalam** (മലയാളം)
+- 🇮🇳 **Punjabi** (ਪੰਜਾਬੀ)
+- 🇮🇳 **Assamese** (অসমীয়া)
+- 🇮🇳 **Odia** (ଓଡ଼ିଆ)
+- 🇮🇳 **Urdu** (اردو)
+
+### Translation Features
+- **Static Translations**: Pre-translated content for core UI elements
+- **Real-time Translation**: Azure Translator integration for dynamic content
+- **Smart Fallback**: Automatically switches between real-time and static translations
+- **Translation Caching**: Optimized performance with intelligent caching
+- **Language Detection**: Automatic detection of input language
+- **Cultural Context**: Translations optimized for Indian context and terminology
+
+### Setting Up Real-time Translation
+
+To enable Azure Translator integration:
+
+1. **Create Azure Translator Resource**
+   ```bash
+   # Go to Azure Portal (portal.azure.com)
+   # Create a new "Translator" resource
+   # Choose "Global" region for best coverage
+   ```
+
+2. **Configure Environment Variables**
+   ```bash
+   # Copy .env.example to .env
+   cp .env.example .env
+   
+   # Set your Azure Translator credentials
+   VITE_AZURE_TRANSLATOR_KEY=your_subscription_key
+   VITE_AZURE_TRANSLATOR_ENDPOINT=https://api.cognitive.microsofttranslator.com
+   VITE_AZURE_TRANSLATOR_REGION=global
+   ```
+
+3. **Features Available with Azure Integration**
+   - Real-time translation of user-generated content
+   - Interactive translation demo page (`/translation-demo`)
+   - Enhanced language selector with translation status
+   - Automatic language detection
+   - Smart caching for improved performance
+
+> **Note**: The application works perfectly without Azure Translator setup, using static translations as fallback.
 
 ## 🎨 Theme System
 

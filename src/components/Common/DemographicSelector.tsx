@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { getAllDemographics } from '../../data/demographicTips';
-import { useTranslation } from '../../hooks/useTranslation';
 
 interface DemographicSelectorProps {
   selectedDemographic: string | null;
@@ -11,7 +10,6 @@ const DemographicSelector: React.FC<DemographicSelectorProps> = ({
   selectedDemographic,
   onDemographicChange
 }) => {
-  const { isHindi } = useTranslation();
   const [hoveredDemographic, setHoveredDemographic] = useState<string | null>(null);
   const demographics = getAllDemographics();
 
@@ -25,11 +23,6 @@ const DemographicSelector: React.FC<DemographicSelectorProps> = ({
         <p className="text-text-secondary max-w-2xl mx-auto leading-relaxed">
           Get personalized cybersecurity tips tailored specifically for your role and digital lifestyle
         </p>
-        {isHindi && (
-          <p className="text-text-secondary text-sm hindi opacity-90">
-            अपनी भूमिका के लिए व्यक्तिगत साइबर सुरक्षा सुझाव प्राप्त करें
-          </p>
-        )}
       </div>
 
       {/* Demographic Buttons Grid */}
@@ -89,12 +82,6 @@ const DemographicSelector: React.FC<DemographicSelectorProps> = ({
                 `}>
                   {demographic.name}
                 </h3>
-                
-                {isHindi && (
-                  <p className="text-sm text-text-muted hindi">
-                    {demographic.nameHindi}
-                  </p>
-                )}
 
                 <p 
                   id={`demographic-desc-${demographic.id}`}

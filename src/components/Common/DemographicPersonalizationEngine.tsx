@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { DemographicTip, getTipsByDemographic, getDemographicById } from '../../data/demographicTips';
-import { useTranslation } from '../../hooks/useTranslation';
 import DemographicSelector from './DemographicSelector';
 import TipCard from './TipCard';
 import { Shield, Users, Target, ArrowRight, RefreshCw } from 'lucide-react';
 
 const DemographicPersonalizationEngine: React.FC = () => {
-  const { isHindi } = useTranslation();
   const [selectedDemographic, setSelectedDemographic] = useState<string | null>(null);
   const [displayedTips, setDisplayedTips] = useState<DemographicTip[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -84,12 +82,6 @@ const DemographicPersonalizationEngine: React.FC = () => {
           <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
             Get cybersecurity advice tailored specifically for your lifestyle and digital habits
           </p>
-          
-          {isHindi && (
-            <p className="text-text-secondary hindi text-lg opacity-90">
-              अपनी जीवनशैली के अनुकूल साइबर सुरक्षा सलाह प्राप्त करें
-            </p>
-          )}
 
           {/* Stats */}
           <div className="flex items-center justify-center space-x-8 pt-6">
@@ -130,11 +122,6 @@ const DemographicPersonalizationEngine: React.FC = () => {
                     <h2 className="text-2xl font-bold text-heading">
                       {selectedDemographicData.name}
                     </h2>
-                    {isHindi && (
-                      <p className="text-text-secondary hindi">
-                        {selectedDemographicData.nameHindi}
-                      </p>
-                    )}
                     <p className="text-text-secondary mt-1">
                       {selectedDemographicData.description}
                     </p>

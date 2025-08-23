@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Phone, Mail, MapPin, Facebook, Twitter, Youtube, Instagram } from 'lucide-react';
+import { AutoTranslate } from '../Translation/AutoTranslate';
 
 const Footer: React.FC = () => {
   return (
@@ -17,10 +18,7 @@ const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-text-secondary text-sm sm:text-base leading-relaxed max-w-sm mx-auto sm:mx-0">
-              Empowering every Indian with cyber safety knowledge. Building a secure digital future for all.
-            </p>
-            <p className="hindi text-text-secondary text-sm sm:text-base opacity-90">
-              हर भारतीय को साइबर सुरक्षा ज्ञान से सशक्त बनाना।
+              <AutoTranslate text="Building a safer digital India, one citizen at a time." translationKey="footer.tagline" />
             </p>
           </div>
 
@@ -90,7 +88,6 @@ const Footer: React.FC = () => {
             <div className="text-sm sm:text-base text-text-secondary">
               <p className="font-semibold mb-2 sm:mb-3 text-text">Supported by:</p>
               <p className="leading-relaxed">CERT-In • RBI • Digital India</p>
-              <p className="hindi mt-2 opacity-90 text-sm">डिजिटल इंडिया पहल का समर्थन</p>
             </div>
           </div>
         </div>
@@ -100,9 +97,6 @@ const Footer: React.FC = () => {
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0 gap-4">
             <div className="text-sm sm:text-base text-text-secondary text-center sm:text-left">
               © 2025 CyberSafe India. All rights reserved. | <Link to="/privacy-policy" className="hover:text-primary transition-colors duration-300 underline decoration-transparent hover:decoration-current">Privacy Policy</Link> | <Link to="/terms-of-service" className="hover:text-primary transition-colors duration-300 underline decoration-transparent hover:decoration-current">Terms of Service</Link>
-            </div>
-            <div className="text-sm sm:text-base text-text-secondary hindi opacity-90 text-center sm:text-right">
-              साइबर सुरक्षित भारत - सुरक्षित डिजिटल भविष्य
             </div>
           </div>
           
