@@ -1,7 +1,6 @@
 import React from 'react';
 import { RealtimeTranslator } from '../components/Translation/RealtimeTranslator';
 import { SmartTranslation } from '../components/Translation/SmartTranslation';
-import { DirectAzureTest } from '../components/Debug/DirectAzureTest';
 import { Globe, Zap, Shield, Users } from 'lucide-react';
 
 export const TranslationDemoPage: React.FC = () => {
@@ -81,9 +80,6 @@ export const TranslationDemoPage: React.FC = () => {
           <h2 className="text-2xl font-bold text-gray-900 mb-6">
             <SmartTranslation text="Try Real-time Translation" />
           </h2>
-          
-          {/* Debug Test Component */}
-          <DirectAzureTest />
           
           <RealtimeTranslator className="w-full" />
         </div>
