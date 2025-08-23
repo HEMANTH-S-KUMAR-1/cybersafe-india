@@ -21,14 +21,14 @@ const RealtimeTranslationDemoPage: React.FC = () => {
     setCacheStats(getDOMCacheStats());
   };
 
-  const refreshCacheStats = () => {
+  const refreshCacheStats = React.useCallback(() => {
     setCacheStats(getDOMCacheStats());
-  };
+  }, [getDOMCacheStats]);
 
   React.useEffect(() => {
     const timer = setInterval(refreshCacheStats, 2000);
     return () => clearInterval(timer);
-  }, []);
+  }, [refreshCacheStats]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 import { AlertTriangle, Shield, Filter, RefreshCw } from 'lucide-react';
 
 interface ThreatAlert {
@@ -19,7 +19,7 @@ export default function ThreatFeed() {
   const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
 
   // Simulated threat data (in production, this would come from an API)
-  const simulatedThreats: ThreatAlert[] = [
+  const simulatedThreats: ThreatAlert[] = useMemo(() => [
     {
       id: '1',
       type: 'Phishing Attack',
@@ -74,9 +74,9 @@ export default function ThreatFeed() {
       timestamp: new Date(Date.now() - Math.random() * 3600000).toISOString(),
       category: 'crypto_scam'
     }
-  ];
+  ], []);
 
-  const fetchThreats = async () => {
+  const fetchThreats = useCallback(async () => {
     setIsLoading(true);
     try {
       // Simulate API delay
@@ -97,14 +97,14 @@ export default function ThreatFeed() {
       console.error('Error fetching threats:', error);
     }
     setIsLoading(false);
-  };
+  }, [simulatedThreats]);
 
   useEffect(() => {
     fetchThreats();
     // Auto-refresh every 60 seconds
     const interval = setInterval(fetchThreats, 60000);
     return () => clearInterval(interval);
-  }, []);
+  }, [fetchThreats]);
 
   useEffect(() => {
     if (selectedFilter === 'all') {

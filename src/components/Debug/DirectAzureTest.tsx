@@ -25,8 +25,9 @@ export const DirectAzureTest: React.FC = () => {
         const errorText = await response.text();
         setResult(`ERROR ${response.status}: ${errorText}`);
       }
-    } catch (error: any) {
-      setResult(`NETWORK ERROR: ${error.message}`);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      setResult(`NETWORK ERROR: ${errorMessage}`);
     }
     setLoading(false);
   };

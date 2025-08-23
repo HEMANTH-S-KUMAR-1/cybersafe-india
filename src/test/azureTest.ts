@@ -38,9 +38,10 @@ export const testAzureTranslator = async () => {
       console.error('Azure Translator is not accessible:', response.status);
       return { success: false, error: `HTTP ${response.status}: ${response.statusText}` };
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Connection error:', error);
-    return { success: false, error: error.message || 'Unknown error' };
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    return { success: false, error: errorMessage };
   }
 };
 

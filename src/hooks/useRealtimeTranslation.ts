@@ -122,7 +122,7 @@ export const useRealtimeTranslation = (options: UseRealtimeTranslationOptions = 
     } finally {
       setIsTranslating(false);
     }
-  }, [currentLanguage, enableRealtime, fallbackToStatic, cacheTranslations, translationCache]);
+  }, [currentLanguage, enableRealtime, fallbackToStatic, cacheTranslation, getCachedTranslation]);
 
   // Translate multiple texts at once
   const translateMultiple = useCallback(async (texts: string[], targetLang?: string): Promise<string[]> => {
@@ -182,7 +182,7 @@ export const useRealtimeTranslation = (options: UseRealtimeTranslationOptions = 
     } finally {
       setIsTranslating(false);
     }
-  }, [currentLanguage, enableRealtime, fallbackToStatic, cacheTranslations, translationCache]);
+  }, [currentLanguage, enableRealtime, fallbackToStatic, cacheTranslation, getCachedTranslation]);
 
   // Enhanced translate function that combines static and real-time translation
   const translate = useCallback((key: string, targetLang?: string): string => {

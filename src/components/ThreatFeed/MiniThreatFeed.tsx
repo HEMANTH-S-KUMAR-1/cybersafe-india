@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { AlertTriangle, Shield, TrendingUp } from 'lucide-react';
 
@@ -14,7 +14,7 @@ interface ThreatAlert {
 export default function MiniThreatFeed() {
   const [alerts, setAlerts] = useState<ThreatAlert[]>([]);
 
-  const simulatedThreats: ThreatAlert[] = [
+  const simulatedThreats: ThreatAlert[] = useMemo(() => [
     {
       id: '1',
       type: 'UPI Fraud Alert',
@@ -39,7 +39,7 @@ export default function MiniThreatFeed() {
       tip: 'Download apps only from official stores',
       timestamp: new Date(Date.now() - 7200000).toISOString() // 2 hours ago
     }
-  ];
+  ], []);
 
   useEffect(() => {
     // Simulate loading threats
@@ -48,7 +48,7 @@ export default function MiniThreatFeed() {
     }, 500);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [simulatedThreats]);
 
   const getSeverityColor = (severity: string) => {
     switch (severity) {

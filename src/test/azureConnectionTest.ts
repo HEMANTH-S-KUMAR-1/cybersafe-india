@@ -40,22 +40,25 @@ export async function testAzureConnection() {
     console.log('✅ Azure Translator API connection successful!');
     console.log('Response:', response.data);
     return true;
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('❌ Azure Translator API connection failed:');
     
-    if (error.response) {
-      console.error('Status:', error.response.status);
-      console.error('Data:', error.response.data);
+    if (error && typeof error === 'object' && 'response' in error) {
+      const axiosError = error as { response: { status: number; data: unknown } };
+      console.error('Status:', axiosError.response.status);
+      console.error('Data:', axiosError.response.data);
       
-      if (error.response.status === 401) {
+      if (axiosError.response.status === 401) {
         console.error('Authentication failed - check your subscription key');
-      } else if (error.response.status === 403) {
+      } else if (axiosError.response.status === 403) {
         console.error('Access denied - check your region and subscription');
       }
-    } else if (error.request) {
-      console.error('Network error:', error.message);
+    } else if (error && typeof error === 'object' && 'request' in error) {
+      const errorMessage = error instanceof Error ? error.message : 'Network error';
+      console.error('Network error:', errorMessage);
     } else {
-      console.error('Error:', error.message);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.error('Error:', errorMessage);
     }
     
     return false;

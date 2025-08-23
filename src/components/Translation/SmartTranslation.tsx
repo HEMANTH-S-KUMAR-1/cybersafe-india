@@ -95,7 +95,7 @@ export const withTranslation = <P extends object>(
   Component: React.ComponentType<P>,
   translationKey?: string
 ) => {
-  return React.forwardRef<any, P & SmartTranslationProps>((props, ref) => {
+  return React.forwardRef<HTMLElement, P & SmartTranslationProps>((props, ref) => {
     const { text, ...restProps } = props;
     
     return (

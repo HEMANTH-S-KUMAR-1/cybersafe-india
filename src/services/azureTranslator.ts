@@ -71,20 +71,22 @@ class AzureTranslatorService {
         detectedLanguage: result.detectedLanguage?.language,
         confidence: result.detectedLanguage?.score
       };
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Translation error:', error);
       
-      if (error.response) {
+      if (error && typeof error === 'object' && 'response' in error) {
         // Server responded with error status
-        const status = error.response.status;
-        const message = error.response.data?.error?.message || error.response.statusText;
+        const axiosError = error as { response: { status: number; data?: { error?: { message?: string } }; statusText: string } };
+        const status = axiosError.response.status;
+        const message = axiosError.response.data?.error?.message || axiosError.response.statusText;
         throw new Error(`Azure Translator API error (${status}): ${message}`);
-      } else if (error.request) {
+      } else if (error && typeof error === 'object' && 'request' in error) {
         // Network error
         throw new Error('Network error: Unable to reach Azure Translator service');
       } else {
         // Other error
-        throw new Error(`Translation error: ${error.message || 'Unknown error'}`);
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        throw new Error(`Translation error: ${errorMessage}`);
       }
     }
   }
@@ -127,17 +129,19 @@ class AzureTranslatorService {
         detectedLanguage: result.detectedLanguage?.language,
         confidence: result.detectedLanguage?.score
       }));
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Multiple translation error:', error);
       
-      if (error.response) {
-        const status = error.response.status;
-        const message = error.response.data?.error?.message || error.response.statusText;
+      if (error && typeof error === 'object' && 'response' in error) {
+        const axiosError = error as { response: { status: number; data?: { error?: { message?: string } }; statusText: string } };
+        const status = axiosError.response.status;
+        const message = axiosError.response.data?.error?.message || axiosError.response.statusText;
         throw new Error(`Azure Translator API error (${status}): ${message}`);
-      } else if (error.request) {
+      } else if (error && typeof error === 'object' && 'request' in error) {
         throw new Error('Network error: Unable to reach Azure Translator service');
       } else {
-        throw new Error(`Translation error: ${error.message || 'Unknown error'}`);
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        throw new Error(`Translation error: ${errorMessage}`);
       }
     }
   }
@@ -174,7 +178,7 @@ class AzureTranslatorService {
   /**
    * Get supported languages
    */
-  async getSupportedLanguages(): Promise<Record<string, any>> {
+  async getSupportedLanguages(): Promise<Record<string, { name: string; nativeName: string; dir: string }>> {
     try {
       const response = await axios.get(
         `${this.baseUrl}/languages?api-version=3.0&scope=translation`,

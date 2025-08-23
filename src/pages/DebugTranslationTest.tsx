@@ -3,12 +3,12 @@ import React from 'react';
 const DebugTranslationTest: React.FC = () => {
   const [logs, setLogs] = React.useState<string[]>([]);
   
-  const addLog = (message: string) => {
+  const addLog = React.useCallback((message: string) => {
     console.log(message);
     setLogs(prev => [...prev, `${new Date().toLocaleTimeString()}: ${message}`]);
-  };
+  }, []);
 
-  const testBasicImport = async () => {
+  const testBasicImport = React.useCallback(async () => {
     try {
       addLog('Testing basic import...');
       const module = await import('../services/realtimeTranslator');
@@ -17,9 +17,9 @@ const DebugTranslationTest: React.FC = () => {
     } catch (error) {
       addLog(`❌ Import failed: ${error}`);
     }
-  };
+  }, [addLog]);
 
-  const testEnvVars = () => {
+  const testEnvVars = React.useCallback(() => {
     addLog('Testing environment variables...');
     const key = import.meta.env.VITE_AZURE_TRANSLATOR_KEY;
     const endpoint = import.meta.env.VITE_AZURE_TRANSLATOR_ENDPOINT;
@@ -28,7 +28,7 @@ const DebugTranslationTest: React.FC = () => {
     addLog(`Key exists: ${!!key} (length: ${key?.length || 0})`);
     addLog(`Endpoint: ${endpoint}`);
     addLog(`Region: ${region}`);
-  };
+  }, [addLog]);
 
   const testSimpleTranslation = async () => {
     try {
@@ -54,7 +54,7 @@ const DebugTranslationTest: React.FC = () => {
     addLog('Debug component mounted');
     testEnvVars();
     testBasicImport();
-  }, []);
+  }, [addLog, testBasicImport, testEnvVars]);
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">

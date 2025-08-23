@@ -140,23 +140,26 @@ class RealtimeTranslatorService {
 
       console.log(`📥 Response Status:`, response.status);
       console.log(`📥 Received translations from Azure:`, response.data);
-      const translations = response.data.map((item: any) => item.translations[0].text);
+      const translations = response.data.map((item: { translations: { text: string }[] }) => item.translations[0].text);
       console.log(`✅ Successfully translated ${translations.length} texts:`, translations);
       
       return translations;
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('❌ Translation API error details:');
-      console.error('Error message:', error.message);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.error('Error message:', errorMessage);
       
-      if (error.response) {
-        console.error('❌ API Response Status:', error.response.status);
-        console.error('❌ API Response Status Text:', error.response.statusText);
-        console.error('❌ API Response Data:', error.response.data);
-        console.error('❌ API Response Headers:', error.response.headers);
-      } else if (error.request) {
-        console.error('❌ No response received:', error.request);
+      if (error && typeof error === 'object' && 'response' in error) {
+        const axiosError = error as { response: { status: number; statusText: string; data: unknown; headers: unknown } };
+        console.error('❌ API Response Status:', axiosError.response.status);
+        console.error('❌ API Response Status Text:', axiosError.response.statusText);
+        console.error('❌ API Response Data:', axiosError.response.data);
+        console.error('❌ API Response Headers:', axiosError.response.headers);
+      } else if (error && typeof error === 'object' && 'request' in error) {
+        const requestError = error as { request: unknown };
+        console.error('❌ No response received:', requestError.request);
       } else {
-        console.error('❌ Error setting up request:', error.message);
+        console.error('❌ Error setting up request:', errorMessage);
       }
       
       // Return original texts as fallback

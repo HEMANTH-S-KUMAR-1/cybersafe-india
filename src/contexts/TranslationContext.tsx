@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { useLocation } from 'react-router-dom';
 import { getCurrentLanguage, setLanguage, t } from '../utils/translationsNew';
 import { realtimeTranslator } from '../services/realtimeTranslator';
 
@@ -17,6 +18,7 @@ interface TranslationProviderProps {
 }
 
 export const TranslationProvider: React.FC<TranslationProviderProps> = ({ children }) => {
+  const location = useLocation();
   const [currentLanguage, setCurrentLanguage] = useState(getCurrentLanguage());
   const [isTranslating, setIsTranslating] = useState(false);
   const [translatedElementsCount, setTranslatedElementsCount] = useState(0);
@@ -93,7 +95,7 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({ childr
       setCurrentLanguage(savedLanguage);
       setLanguage(savedLanguage);
     }
-  }, []);
+  }, [currentLanguage]);
 
   // Auto-translate on route changes to ensure new content is translated
   useEffect(() => {
@@ -106,7 +108,7 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({ childr
 
       return () => clearTimeout(timer);
     }
-  }, [currentLanguage]);
+  }, [currentLanguage, location.pathname]);
 
   const value: TranslationContextType = {
     currentLanguage,
