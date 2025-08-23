@@ -53,7 +53,7 @@ export const useRealtimeTranslation = (options: UseRealtimeTranslationOptions = 
   }, []);
 
   // Get cached translation
-  const getCachedTranslation = (text: string, targetLang: string): string | null => {
+  const getCachedTranslation = useCallback((text: string, targetLang: string): string | null => {
     if (!cacheTranslations) return null;
     
     const cached = translationCache[text]?.[targetLang];
@@ -61,10 +61,10 @@ export const useRealtimeTranslation = (options: UseRealtimeTranslationOptions = 
       return cached.text;
     }
     return null;
-  };
+  }, [cacheTranslations, translationCache]);
 
   // Cache translation
-  const cacheTranslation = (originalText: string, translatedText: string, targetLang: string) => {
+  const cacheTranslation = useCallback((originalText: string, translatedText: string, targetLang: string) => {
     if (!cacheTranslations) return;
     
     setTranslationCache(prev => ({
@@ -77,7 +77,7 @@ export const useRealtimeTranslation = (options: UseRealtimeTranslationOptions = 
         }
       }
     }));
-  };
+  }, [cacheTranslations]);
 
   // Real-time translation function
   const translateWithAzure = useCallback(async (text: string, targetLang?: string): Promise<string> => {
