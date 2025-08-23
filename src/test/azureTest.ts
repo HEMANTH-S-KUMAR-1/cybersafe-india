@@ -14,14 +14,25 @@ export const testAzureTranslator = async () => {
       console.log('Azure Translator languages endpoint is accessible');
       console.log('Supported languages count:', Object.keys(data.translation || {}).length);
       
-      // Test with our credentials
+      // Test with our credentials if available
+      const apiKey = import.meta.env.VITE_AZURE_TRANSLATOR_KEY;
+      const region = import.meta.env.VITE_AZURE_TRANSLATOR_REGION;
+      
+      if (!apiKey) {
+        console.log('Azure API key not configured - skipping translation test');
+        return { success: true, error: 'No API key configured (this is optional)' };
+      }
+      
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json'
+      };
+      
+      if (apiKey) headers['Ocp-Apim-Subscription-Key'] = apiKey;
+      if (region) headers['Ocp-Apim-Subscription-Region'] = region;
+      
       const testResponse = await fetch('https://api.cognitive.microsofttranslator.com/translator/text/v3.0/translate?api-version=3.0&to=hi', {
         method: 'POST',
-        headers: {
-          'Ocp-Apim-Subscription-Key': import.meta.env.VITE_AZURE_TRANSLATOR_KEY,
-          'Ocp-Apim-Subscription-Region': import.meta.env.VITE_AZURE_TRANSLATOR_REGION,
-          'Content-Type': 'application/json'
-        },
+        headers,
         body: JSON.stringify([{ text: 'Hello' }])
       });
       
