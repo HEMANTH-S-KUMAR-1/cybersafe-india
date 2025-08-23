@@ -14,6 +14,7 @@ import {
   Phone
 } from 'lucide-react';
 import AlertBanner from '../components/Common/AlertBanner';
+import DemographicPersonalizationEngine from '../components/Common/DemographicPersonalizationEngine';
 
 const HomePage: React.FC = () => {
   const demographics = [
@@ -181,6 +182,9 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Demographic Personalization Engine */}
+      <DemographicPersonalizationEngine />
 
       {/* Latest Alerts */}
       <section className="py-16 bg-white">

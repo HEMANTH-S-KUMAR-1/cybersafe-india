@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Globe, ChevronDown } from 'lucide-react';
 
 const LanguageSelector: React.FC = () => {
@@ -20,17 +20,7 @@ const LanguageSelector: React.FC = () => {
     };
   }, []);
 
-  // Load saved language preference on mount
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem('preferred-language');
-    if (savedLanguage && languages.find(lang => lang.code === savedLanguage)) {
-      setSelectedLanguage(savedLanguage);
-      document.documentElement.lang = savedLanguage;
-      document.body.classList.add(`lang-${savedLanguage}`);
-    }
-  }, []);
-
-  const languages = [
+  const languages = useMemo(() => [
     { code: 'en', name: 'English', native: 'English' },
     { code: 'hi', name: 'Hindi', native: 'हिंदी' },
     { code: 'kn', name: 'Kannada', native: 'ಕನ್ನಡ' },
@@ -39,7 +29,17 @@ const LanguageSelector: React.FC = () => {
     { code: 'bn', name: 'Bengali', native: 'বাংলা' },
     { code: 'gu', name: 'Gujarati', native: 'ગુજરાતી' },
     { code: 'mr', name: 'Marathi', native: 'मराठी' },
-  ];
+  ], []);
+
+  // Load saved language preference on mount
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem('preferred-language');
+    if (savedLanguage && languages.find(lang => lang.code === savedLanguage)) {
+      setSelectedLanguage(savedLanguage);
+      document.documentElement.lang = savedLanguage;
+      document.body.classList.add(`lang-${savedLanguage}`);
+    }
+  }, [languages]);
 
   const currentLanguage = languages.find(lang => lang.code === selectedLanguage);
 

@@ -25,6 +25,13 @@ CyberSafe India is a comprehensive cybersecurity awareness platform designed to 
 - **📱 Responsive Design** - Optimized for mobile, tablet, and desktop
 - **♿ Accessibility** - WCAG 2.1 compliant design
 - **⚡ Performance** - Lightning-fast loading and smooth animations
+- **🎯 Demographic Personalization** - Tailored cybersecurity tips for different user groups
+
+### 🆕 Latest Features (August 2025)
+- **👤 Demographic-Based Content Engine** - Personalized cybersecurity tips for Students, Homemakers, Senior Citizens, and Professionals
+- **🎨 Enhanced UI/UX** - Improved card layouts and interactive components
+- **🔧 Code Quality Improvements** - ESLint configuration, TypeScript optimizations
+- **📊 Performance Optimizations** - Better build times and bundle splitting
 
 ### 🏛️ Government Integration
 - **🔗 CERT-In Integration** - Direct connection to cybersecurity authorities
