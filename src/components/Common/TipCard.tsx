@@ -50,17 +50,17 @@ const TipCard: React.FC<TipCardProps> = ({ tip, index }) => {
       role="article"
       aria-labelledby={`tip-title-${tip.id}`}
     >
-      {/* Priority Badge */}
-      <div className="absolute top-3 right-3">
+      {/* Top Row: Priority Badge */}
+      <div className="flex justify-end mb-4">
         <span className={`
-          px-2 py-1 rounded-full text-xs font-medium 
-          ${priorityBadge.class} opacity-90
+          px-3 py-1 rounded-full text-xs font-semibold
+          ${priorityBadge.class} shadow-sm
         `}>
           {priorityBadge.text}
         </span>
       </div>
 
-      {/* Icon and Header */}
+      {/* Icon and Header Row */}
       <div className="flex items-start space-x-4 mb-4">
         <div className="flex-shrink-0">
           <span 
@@ -75,16 +75,18 @@ const TipCard: React.FC<TipCardProps> = ({ tip, index }) => {
         <div className="flex-1 min-w-0">
           <h3 
             id={`tip-title-${tip.id}`}
-            className="text-lg font-semibold text-heading mb-2 line-clamp-2 group-hover:text-primary transition-colors duration-300"
+            className="text-lg font-semibold text-heading mb-3 line-clamp-2 group-hover:text-primary transition-colors duration-300"
           >
             {tip.title}
           </h3>
-          
-          {/* Category Tag */}
-          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-light text-primary border border-primary/20">
-            {tip.category.replace('_', ' ').toUpperCase()}
-          </span>
         </div>
+      </div>
+
+      {/* Category Tag Row */}
+      <div className="mb-4">
+        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary-light text-primary border border-primary/30 shadow-sm">
+          {tip.category.replace('_', ' ').toUpperCase()}
+        </span>
       </div>
 
       {/* Description */}

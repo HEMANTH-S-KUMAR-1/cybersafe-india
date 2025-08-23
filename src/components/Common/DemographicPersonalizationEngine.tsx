@@ -188,9 +188,11 @@ const DemographicPersonalizationEngine: React.FC = () => {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                   {displayedTips.map((tip, index) => (
-                    <TipCard key={tip.id} tip={tip} index={index} />
+                    <div key={tip.id} className="h-full">
+                      <TipCard tip={tip} index={index} />
+                    </div>
                   ))}
                 </div>
 
