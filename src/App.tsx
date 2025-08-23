@@ -5,7 +5,6 @@ import Footer from './components/Layout/Footer';
 import ThemeShowcase from './components/Common/ThemeShowcase';
 import { TranslationProvider } from './contexts/TranslationContext';
 import RouteTranslationWatcher from './components/Translation/RouteTranslationWatcher';
-import TranslationDebugPanel from './components/Debug/TranslationDebugPanel';
 import './utils/translatorInit'; // Initialize Azure Translator
 
 // Lazy load page components for better performance
@@ -63,7 +62,6 @@ function App() {
             <Route path="/terms-of-service" element={<TermsOfService />} />
           </Route>
         </Routes>
-        <TranslationDebugPanel />
       </div>
     </TranslationProvider>
   );
