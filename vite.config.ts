@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: process.env.NODE_ENV === 'production' ? '/' : '/cybersafe-india/',
+  base: '/', // Always use root for Cloudflare Pages
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
@@ -18,5 +18,10 @@ export default defineConfig({
         }
       }
     }
-  }
+  },
+  // Cloudflare Pages optimization
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
+  },
+  publicDir: 'public'
 })

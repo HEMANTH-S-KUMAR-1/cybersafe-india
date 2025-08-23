@@ -1,1 +1,9 @@
-/* /index.html 200
+# Cloudflare Pages redirects for SPA routing
+/*    /index.html   200
+
+# Handle old URLs and provide clean redirects
+/home   /   301
+/about  /learn  301
+
+# API routes (if any future API endpoints are added)
+/api/*  /api/:splat  200

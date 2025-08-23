@@ -16,7 +16,7 @@ const LoadingFallback = () => (
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Suspense fallback={<LoadingFallback />}>
-      <BrowserRouter basename={process.env.NODE_ENV === 'production' ? '/' : '/cybersafe-india'}>
+      <BrowserRouter basename="/">
         <App />
       </BrowserRouter>
     </Suspense>
