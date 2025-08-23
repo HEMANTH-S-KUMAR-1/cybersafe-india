@@ -105,6 +105,14 @@ const Footer: React.FC = () => {
               साइबर सुरक्षित भारत - सुरक्षित डिजिटल भविष्य
             </div>
           </div>
+          
+          {/* Educational Disclaimer */}
+          <div className="mt-6 pt-6 border-t border-border/50">
+            <p className="text-sm text-text-secondary text-center leading-relaxed opacity-80">
+              <strong>Educational Disclaimer:</strong> This information is provided for educational purposes only and has not been verified for accuracy or completeness. 
+              This website is created for educational demonstration purposes and should not be used as a substitute for professional cybersecurity advice.
+            </p>
+          </div>
         </div>
       </div>
     </footer>
