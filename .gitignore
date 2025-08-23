@@ -23,6 +23,9 @@
 .env.test.local
 .env.production.local
 
+# Sensitive deployment guides
+CLOUDFLARE_CREDENTIALS_SETUP.md
+
 # IDE and Editor files
 .idea/
 *.swp
