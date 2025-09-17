@@ -20,7 +20,6 @@ const LearnPage: React.FC = () => {
       id: 'phishing',
       icon: Mail,
       title: 'Phishing & Email Scams',
-      hindi: 'फ़िशिंग और ईमेल धोखाधड़ी',
       description: 'Learn to identify and avoid fraudulent emails and links',
       duration: '15 mins',
       difficulty: 'Beginner',
@@ -32,7 +31,6 @@ const LearnPage: React.FC = () => {
       id: 'upi-fraud',
       icon: CreditCard,
       title: 'UPI & Payment Fraud',
-      hindi: 'UPI और भुगतान धोखाधड़ी',
       description: 'Secure digital payments and avoid payment scams',
       duration: '20 mins',
       difficulty: 'Intermediate',
@@ -44,7 +42,6 @@ const LearnPage: React.FC = () => {
       id: 'identity-theft',
       icon: User,
       title: 'Identity Theft',
-      hindi: 'पहचान चोरी',
       description: 'Protect your personal information and digital identity',
       duration: '18 mins',
       difficulty: 'Intermediate',
@@ -56,7 +53,6 @@ const LearnPage: React.FC = () => {
       id: 'social-media',
       icon: Users,
       title: 'Social Media Safety',
-      hindi: 'सोशल मीडिया सुरक्षा',
       description: 'Safe practices for Facebook, WhatsApp, and other platforms',
       duration: '12 mins',
       difficulty: 'Beginner',
@@ -101,7 +97,6 @@ const LearnPage: React.FC = () => {
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Learn Cyber Safety
           </h1>
-          <p className="hindi text-xl text-gray-600 mb-4">साइबर सुरक्षा सीखें</p>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Master essential cybersecurity skills through interactive modules, real-world scenarios, and expert guidance.
           </p>
@@ -157,7 +152,6 @@ const LearnPage: React.FC = () => {
                   </div>
                   
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">{module.title}</h3>
-                  <p className="hindi text-sm text-gray-600 mb-3">{module.hindi}</p>
                   <p className="text-gray-600 text-sm leading-relaxed mb-4">{module.description}</p>
                   
                   {/* Progress Bar */}

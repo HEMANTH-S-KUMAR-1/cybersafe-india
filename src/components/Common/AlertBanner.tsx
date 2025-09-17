@@ -15,9 +15,6 @@ const AlertBanner: React.FC = () => {
             <div>
               <span className="font-semibold">URGENT ALERT:</span>
               <span className="ml-2">New cryptocurrency investment scams targeting Indian users. Stay vigilant!</span>
-              <span className="block text-sm hindi opacity-90 mt-1">
-                नई क्रिप्टोकरेंसी निवेश धोखाधड़ी - सावधान रहें!
-              </span>
             </div>
           </div>
           <button

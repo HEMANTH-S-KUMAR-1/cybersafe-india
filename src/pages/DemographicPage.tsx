@@ -22,7 +22,6 @@ const DemographicPage: React.FC = () => {
     students: {
       icon: BookOpen,
       title: 'Students',
-      hindi: 'छात्र',
       description: 'Cybersecurity guidance for students navigating online learning and social platforms',
       color: 'bg-blue-500',
       commonThreats: [
@@ -48,7 +47,6 @@ const DemographicPage: React.FC = () => {
     professionals: {
       icon: Briefcase,
       title: 'Professionals',
-      hindi: 'पेशेवर',
       description: 'Workplace cybersecurity and professional data protection strategies',
       color: 'bg-green-500',
       commonThreats: [
@@ -74,7 +72,6 @@ const DemographicPage: React.FC = () => {
     homemakers: {
       icon: Home,
       title: 'Homemakers',
-      hindi: 'गृहिणी',
       description: 'Safe online shopping and family digital safety guidance',
       color: 'bg-pink-500',
       commonThreats: [
@@ -100,7 +97,6 @@ const DemographicPage: React.FC = () => {
     'rural-users': {
       icon: Sprout,
       title: 'Rural Users',
-      hindi: 'ग्रामीण उपयोगकर्ता',
       description: 'Simple cybersecurity for new internet users in rural areas',
       color: 'bg-orange-500',
       commonThreats: [
@@ -126,7 +122,6 @@ const DemographicPage: React.FC = () => {
     'senior-citizens': {
       icon: Heart,
       title: 'Senior Citizens',
-      hindi: 'वरिष्ठ नागरिक',
       description: 'Easy-to-understand cybersecurity for senior citizens',
       color: 'bg-purple-500',
       commonThreats: [
@@ -186,7 +181,6 @@ const DemographicPage: React.FC = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-heading mb-4">
               Cybersecurity for {data.title}
             </h1>
-            <p className="hindi text-2xl text-text-secondary mb-6">{data.hindi} के लिए साइबर सुरक्षा</p>
             <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
               {data.description}
             </p>

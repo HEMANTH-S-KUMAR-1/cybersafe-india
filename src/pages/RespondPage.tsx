@@ -23,7 +23,6 @@ const RespondPage: React.FC = () => {
       name: 'Cyber Crime Helpline',
       number: '155260',
       description: 'National cybercrime reporting and assistance',
-      hindi: 'राष्ट्रीय साइबर अपराध हेल्पलाइन',
       available: '24/7',
     },
     {
@@ -31,7 +30,6 @@ const RespondPage: React.FC = () => {
       name: 'Banking Fraud Helpline',
       number: '1930',
       description: 'Report banking and financial frauds',
-      hindi: 'बैंकिंग धोखाधड़ी हेल्पलाइन',
       available: '24/7',
     },
     {
@@ -39,7 +37,6 @@ const RespondPage: React.FC = () => {
       name: 'CERT-In',
       email: 'incident@cert-in.org.in',
       description: 'Computer Emergency Response Team',
-      hindi: 'कंप्यूटर आपातकालीन प्रतिक्रिया टीम',
       available: 'Business Hours',
     },
   ];
@@ -72,13 +69,13 @@ const RespondPage: React.FC = () => {
   ];
 
   const scamTypes = [
-    { id: 'upi-fraud', label: 'UPI/Payment Fraud', hindi: 'UPI/भुगतान धोखाधड़ी' },
-    { id: 'phishing', label: 'Phishing/Fake Emails', hindi: 'फ़िशिंग/नकली ईमेल' },
-    { id: 'identity-theft', label: 'Identity Theft', hindi: 'पहचान चोरी' },
-    { id: 'investment-scam', label: 'Investment Scams', hindi: 'निवेश धोखाधड़ी' },
-    { id: 'job-fraud', label: 'Job/Employment Fraud', hindi: 'नौकरी धोखाधड़ी' },
-    { id: 'social-media', label: 'Social Media Scams', hindi: 'सोशल मीडिया धोखाधड़ी' },
-    { id: 'other', label: 'Other', hindi: 'अन्य' },
+    { id: 'upi-fraud', label: 'UPI/Payment Fraud' },
+    { id: 'phishing', label: 'Phishing/Fake Emails' },
+    { id: 'identity-theft', label: 'Identity Theft' },
+    { id: 'investment-scam', label: 'Investment Scams' },
+    { id: 'job-fraud', label: 'Job/Employment Fraud' },
+    { id: 'social-media', label: 'Social Media Scams' },
+    { id: 'other', label: 'Other' },
   ];
 
   const copyToClipboard = (text: string, type: string) => {
@@ -96,7 +93,6 @@ const RespondPage: React.FC = () => {
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Respond to Cyber Threats
           </h1>
-          <p className="hindi text-xl text-gray-600 mb-4">साइबर खतरों का जवाब</p>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Been scammed or suspect fraudulent activity? Get immediate help and learn how to respond effectively.
           </p>
@@ -142,7 +138,6 @@ const RespondPage: React.FC = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-6">
               What to Do If You're Scammed
             </h2>
-            <p className="hindi text-lg text-gray-600 mb-8">यदि आप धोखाधड़ी का शिकार हुए हैं</p>
             
             <div className="space-y-6">
               {reportingSteps.map((step) => {
@@ -170,7 +165,6 @@ const RespondPage: React.FC = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-6">
               Emergency Contacts
             </h2>
-            <p className="hindi text-lg text-gray-600 mb-8">आपातकालीन संपर्क</p>
             
             <div className="space-y-4 mb-8">
               {emergencyContacts.map((contact) => (
@@ -178,7 +172,6 @@ const RespondPage: React.FC = () => {
                   <div className="flex items-start justify-between mb-3">
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900">{contact.name}</h3>
-                      <p className="hindi text-sm text-gray-600">{contact.hindi}</p>
                     </div>
                     <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
                       {contact.available}
@@ -241,7 +234,6 @@ const RespondPage: React.FC = () => {
             {/* Quick Report Form */}
             <div className="card p-6">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Quick Incident Report</h3>
-              <p className="hindi text-sm text-gray-600 mb-6">त्वरित घटना रिपोर्ट</p>
               
               <form className="space-y-4">
                 <div>
@@ -256,7 +248,7 @@ const RespondPage: React.FC = () => {
                     <option value="">Select incident type</option>
                     {scamTypes.map((type) => (
                       <option key={type.id} value={type.id}>
-                        {type.label} - {type.hindi}
+                        {type.label}
                       </option>
                     ))}
                   </select>
