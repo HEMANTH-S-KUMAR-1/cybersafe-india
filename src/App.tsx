@@ -14,6 +14,7 @@ const ResourcesPage = lazy(() => import('./pages/ResourcesPage'));
 const DemographicPage = lazy(() => import('./pages/DemographicPage'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
+const ThreatIntelligenceTestPage = lazy(() => import('./pages/ThreatIntelligenceTestPage'));
 // Demo pages removed - only production components remain
 
 // Loading component for Suspense fallback
@@ -54,6 +55,7 @@ function App() {
           <Route path="/community" element={<CommunityPage />} />
           <Route path="/resources" element={<ResourcesPage />} />
           <Route path="/demographic/:type" element={<DemographicPage />} />
+          <Route path="/threat-test" element={<ThreatIntelligenceTestPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
         </Route>

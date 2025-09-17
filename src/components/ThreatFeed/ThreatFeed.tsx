@@ -1,15 +1,7 @@
-import { useEffect, useState, useCallback, useMemo } from 'react';
-import { AlertTriangle, Shield, Filter, RefreshCw } from 'lucide-react';
-
-interface ThreatAlert {
-  id: string;
-  type: string;
-  severity: 'high' | 'medium' | 'low';
-  detail: string;
-  tip: string;
-  timestamp: string;
-  category: string;
-}
+import { useEffect, useState, useCallback } from 'react';
+import { AlertTriangle, Shield, Filter, RefreshCw, ExternalLink, Volume2 } from 'lucide-react';
+import { threatIntelligenceService, ThreatAlert } from '../../services/threatIntelligence';
+import { voiceNarrationService } from '../../services/voiceNarration';
 
 export default function ThreatFeed() {
   const [alerts, setAlerts] = useState<ThreatAlert[]>([]);
@@ -18,91 +10,27 @@ export default function ThreatFeed() {
   const [isLoading, setIsLoading] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
 
-  // Simulated threat data (in production, this would come from an API)
-  const simulatedThreats: ThreatAlert[] = useMemo(() => [
-    {
-      id: '1',
-      type: 'Phishing Attack',
-      severity: 'high',
-      detail: 'Fake SBI banking emails targeting customers with urgent account verification messages',
-      tip: 'Never click on suspicious links in emails. Always visit your bank website directly.',
-      timestamp: new Date(Date.now() - Math.random() * 3600000).toISOString(),
-      category: 'phishing'
-    },
-    {
-      id: '2',
-      type: 'UPI Fraud',
-      severity: 'high',
-      detail: 'Fraudulent QR codes circulating on WhatsApp promising cashback rewards',
-      tip: 'Only scan QR codes from trusted sources. Verify before making any payments.',
-      timestamp: new Date(Date.now() - Math.random() * 3600000).toISOString(),
-      category: 'upi_fraud'
-    },
-    {
-      id: '3',
-      type: 'Identity Theft',
-      severity: 'medium',
-      detail: 'Fake job portals collecting Aadhaar and PAN details from job seekers',
-      tip: 'Never share personal documents on unverified job portals.',
-      timestamp: new Date(Date.now() - Math.random() * 3600000).toISOString(),
-      category: 'identity_theft'
-    },
-    {
-      id: '4',
-      type: 'Malware Alert',
-      severity: 'high',
-      detail: 'Android app "FastVPN" found to contain banking trojans',
-      tip: 'Download apps only from official app stores and check reviews.',
-      timestamp: new Date(Date.now() - Math.random() * 3600000).toISOString(),
-      category: 'malware'
-    },
-    {
-      id: '5',
-      type: 'Social Engineering',
-      severity: 'medium',
-      detail: 'Fake customer support calls claiming urgent KYC updates required',
-      tip: 'Banks never ask for OTP or PIN over phone calls.',
-      timestamp: new Date(Date.now() - Math.random() * 3600000).toISOString(),
-      category: 'social_engineering'
-    },
-    {
-      id: '6',
-      type: 'Crypto Scam',
-      severity: 'high',
-      detail: 'Fake cryptocurrency investment schemes promising 300% returns',
-      tip: 'Be cautious of get-rich-quick schemes. Research before investing.',
-      timestamp: new Date(Date.now() - Math.random() * 3600000).toISOString(),
-      category: 'crypto_scam'
-    }
-  ], []);
-
   const fetchThreats = useCallback(async () => {
     setIsLoading(true);
     try {
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Shuffle and add new timestamp to simulate real-time updates
-      const shuffled = [...simulatedThreats]
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 4)
-        .map(threat => ({
-          ...threat,
-          timestamp: new Date(Date.now() - Math.random() * 3600000).toISOString()
-        }));
-      
-      setAlerts(shuffled);
+      const threats = await threatIntelligenceService.fetchLatestThreats();
+      setAlerts(threats);
       setLastUpdated(new Date());
     } catch (error) {
-      console.error('Error fetching threats:', error);
+      console.error('Error fetching real-time threats:', error);
     }
     setIsLoading(false);
-  }, [simulatedThreats]);
+  }, []);
+
+  const readThreat = (alert: ThreatAlert) => {
+    const threatText = `${alert.type}. ${alert.detail}. Safety tip: ${alert.tip}`;
+    voiceNarrationService.speak(threatText);
+  };
 
   useEffect(() => {
     fetchThreats();
-    // Auto-refresh every 60 seconds
-    const interval = setInterval(fetchThreats, 60000);
+    // Auto-refresh every 5 minutes for real-time updates
+    const interval = setInterval(fetchThreats, 300000);
     return () => clearInterval(interval);
   }, [fetchThreats]);
 
@@ -203,12 +131,30 @@ export default function ThreatFeed() {
                 {getSeverityIcon(alert.severity)}
                 <div className="flex-1">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                    <h3 className="font-semibold text-lg text-heading">
-                      {alert.type}
-                    </h3>
-                    <span className="text-sm text-text-muted mt-1 sm:mt-0">
-                      {new Date(alert.timestamp).toLocaleString()}
-                    </span>
+                    <div className="flex flex-col">
+                      <h3 className="font-semibold text-lg text-heading">
+                        {alert.type}
+                      </h3>
+                      {alert.source && (
+                        <div className="flex items-center gap-1 mt-1">
+                          <ExternalLink className="w-3 h-3 text-blue-500" />
+                          <span className="text-xs text-blue-600 font-medium">{alert.source}</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => readThreat(alert)}
+                        className="p-1 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-600 transition-colors"
+                        title="Read threat aloud"
+                        aria-label="Read this threat aloud"
+                      >
+                        <Volume2 className="w-4 h-4" />
+                      </button>
+                      <span className="text-sm text-text-muted mt-1 sm:mt-0">
+                        {new Date(alert.timestamp).toLocaleString()}
+                      </span>
+                    </div>
                   </div>
                   
                   <p className="text-text mb-3 leading-relaxed">
@@ -235,8 +181,8 @@ export default function ThreatFeed() {
       {/* Footer Note */}
       <div className="mt-6 p-4 bg-primary-light border border-primary rounded-lg">
         <p className="text-sm text-primary">
-          <strong>Note:</strong> This threat intelligence feed is updated in real-time. 
-          Stay vigilant and follow the safety tips to protect yourself from cyber threats.
+          <strong>Real-Time Intelligence:</strong> This feed aggregates live security threats from trusted sources including NVD (National Vulnerability Database), GitHub Security Advisories, and CERT-IN alerts. 
+          Data is refreshed every 5 minutes to keep you informed of the latest cybersecurity developments.
         </p>
       </div>
     </div>

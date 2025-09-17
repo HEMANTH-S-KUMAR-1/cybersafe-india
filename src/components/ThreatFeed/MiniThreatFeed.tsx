@@ -1,54 +1,26 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AlertTriangle, Shield, TrendingUp } from 'lucide-react';
-
-interface ThreatAlert {
-  id: string;
-  type: string;
-  severity: 'high' | 'medium' | 'low';
-  detail: string;
-  tip: string;
-  timestamp: string;
-}
+import { threatIntelligenceService, ThreatAlert } from '../../services/threatIntelligence';
 
 export default function MiniThreatFeed() {
   const [alerts, setAlerts] = useState<ThreatAlert[]>([]);
 
-  const simulatedThreats: ThreatAlert[] = useMemo(() => [
-    {
-      id: '1',
-      type: 'UPI Fraud Alert',
-      severity: 'high',
-      detail: 'Fraudulent QR codes promising cashback rewards circulating on WhatsApp',
-      tip: 'Only scan QR codes from trusted sources',
-      timestamp: new Date(Date.now() - 1800000).toISOString() // 30 minutes ago
-    },
-    {
-      id: '2', 
-      type: 'Phishing Attack',
-      severity: 'high',
-      detail: 'Fake bank verification emails targeting multiple Indian banks',
-      tip: 'Never click links in suspicious emails',
-      timestamp: new Date(Date.now() - 3600000).toISOString() // 1 hour ago
-    },
-    {
-      id: '3',
-      type: 'Malware Alert',
-      severity: 'medium',
-      detail: 'Suspicious APK files spreading through social media platforms',
-      tip: 'Download apps only from official stores',
-      timestamp: new Date(Date.now() - 7200000).toISOString() // 2 hours ago
-    }
-  ], []);
-
   useEffect(() => {
-    // Simulate loading threats
-    const timer = setTimeout(() => {
-      setAlerts(simulatedThreats.slice(0, 3));
-    }, 500);
+    const fetchThreats = async () => {
+      try {
+        const threats = await threatIntelligenceService.fetchLatestThreats();
+        setAlerts(threats.slice(0, 3)); // Show only top 3 threats
+      } catch (error) {
+        console.error('Error fetching threats for mini feed:', error);
+      }
+    };
 
-    return () => clearTimeout(timer);
-  }, [simulatedThreats]);
+    fetchThreats();
+    // Refresh every 10 minutes
+    const interval = setInterval(fetchThreats, 600000);
+    return () => clearInterval(interval);
+  }, []);
 
   const getSeverityColor = (severity: string) => {
     switch (severity) {

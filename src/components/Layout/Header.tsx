@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Shield, Menu, X, Volume2 } from 'lucide-react';
+import { Shield, Menu, X, Volume2, VolumeX } from 'lucide-react';
+import { voiceNarrationService } from '../../services/voiceNarration';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -66,9 +67,15 @@ const Header: React.FC = () => {
   }, [location]);
 
   const toggleVoice = () => {
-    setIsVoiceEnabled(!isVoiceEnabled);
-    // Voice narration toggle logic would be implemented here
-    console.log('Voice narration:', !isVoiceEnabled ? 'enabled' : 'disabled');
+    const newState = voiceNarrationService.toggle();
+    setIsVoiceEnabled(newState);
+    
+    // Optionally read page content when voice is enabled
+    if (newState) {
+      setTimeout(() => {
+        voiceNarrationService.readPageContent();
+      }, 1500); // Wait for the "enabled" message to finish
+    }
   };
 
   return (
@@ -122,11 +129,15 @@ const Header: React.FC = () => {
                   ? 'bg-primary text-white'
                   : 'bg-surface-hover text-text-secondary hover:bg-surface'
               }`}
-              title="Voice narration"
+              title={isVoiceEnabled ? "Disable voice narration" : "Enable voice narration"}
               aria-label="Toggle voice narration"
               aria-pressed={isVoiceEnabled}
             >
-              <Volume2 className="h-5 w-5" aria-hidden="true" />
+              {isVoiceEnabled ? (
+                <Volume2 className="h-5 w-5" aria-hidden="true" />
+              ) : (
+                <VolumeX className="h-5 w-5" aria-hidden="true" />
+              )}
             </button>
           </div>
 
