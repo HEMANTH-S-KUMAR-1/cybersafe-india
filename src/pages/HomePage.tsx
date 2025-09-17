@@ -16,7 +16,7 @@ import {
 import AlertBanner from '../components/Common/AlertBanner';
 import DemographicPersonalizationEngine from '../components/Common/DemographicPersonalizationEngine';
 import MiniThreatFeed from '../components/ThreatFeed/MiniThreatFeed';
-import { AutoTranslate } from '../components/Translation/AutoTranslate';
+
 
 const HomePage: React.FC = () => {
   const demographics = [
@@ -103,14 +103,14 @@ const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 text-shadow animate-slide-up leading-tight">
-              <AutoTranslate text="Secure India's Digital Future" translationKey="hero.title" />
+              Secure India's Digital Future
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-8 sm:mb-12 leading-relaxed animate-slide-up px-4 sm:px-0">
-              <AutoTranslate text="Empowering every Indian with cybersecurity knowledge and tools to stay safe online" translationKey="hero.subtitle" />
+              Empowering every Indian with cybersecurity knowledge and tools to stay safe online
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 animate-slide-up px-4 sm:px-0">
               <Link to="/learn" className="btn-primary text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
-                <AutoTranslate text="Start Learning" translationKey="hero.cta.learn" />
+                Start Learning
               </Link>
               <Link to="/respond" className="btn-secondary text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
                 Report Scam
@@ -130,7 +130,7 @@ const HomePage: React.FC = () => {
                   {stat.number}
                 </div>
                 <div className="text-gray-600 font-medium text-sm sm:text-base">
-                  <AutoTranslate text={stat.label} translationKey={stat.label} />
+                  {stat.label}
                 </div>
               </div>
             ))}
@@ -143,10 +143,10 @@ const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-heading mb-4 sm:mb-6 px-4 sm:px-0">
-              <AutoTranslate text="Tailored Cyber Safety for Everyone" translationKey="home.demographics.title" />
+              Tailored Cyber Safety for Everyone
             </h2>
             <p className="text-lg sm:text-xl text-text-secondary max-w-4xl mx-auto leading-relaxed px-4 sm:px-0">
-              <AutoTranslate text="Choose your category to get personalized cyber safety guidance and protection strategies designed specifically for your needs." translationKey="home.demographics.subtitle" />
+              Choose your category to get personalized cyber safety guidance and protection strategies designed specifically for your needs.
             </p>
           </div>
           
@@ -163,10 +163,10 @@ const HomePage: React.FC = () => {
                     <IconComponent className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
                   </div>
                   <h3 className="text-lg sm:text-xl font-semibold text-heading mb-2 sm:mb-3">
-                    <AutoTranslate text={demo.title} translationKey={demo.title} />
+                    {demo.title}
                   </h3>
                   <p className="text-text-secondary text-sm sm:text-base leading-relaxed mb-3 sm:mb-4">
-                    <AutoTranslate text={demo.description} translationKey={demo.description} />
+                    {demo.description}
                   </p>
                   <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6 text-primary mx-auto mt-2 sm:mt-4 group-hover:translate-x-2 transition-all duration-300" />
                 </Link>

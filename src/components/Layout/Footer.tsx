@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Phone, Mail, MapPin, Facebook, Twitter, Youtube, Instagram } from 'lucide-react';
-import { AutoTranslate } from '../Translation/AutoTranslate';
+
 
 const Footer: React.FC = () => {
   return (
@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-text-secondary text-sm sm:text-base leading-relaxed max-w-sm mx-auto sm:mx-0">
-              <AutoTranslate text="Building a safer digital India, one citizen at a time." translationKey="footer.tagline" />
+              Building a safer digital India, one citizen at a time.
             </p>
           </div>
 

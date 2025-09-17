@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Shield, Menu, X, Volume2 } from 'lucide-react';
-import RealtimeLanguageSelector from '../Translation/RealtimeLanguageSelector';
-import { AutoTranslate } from '../Translation/AutoTranslate';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,12 +27,12 @@ const Header: React.FC = () => {
   }, []);
 
   const navItems = [
-    { path: '/', label: 'nav.home' },
-    { path: '/learn', label: 'nav.learn' },
-    { path: '/threats', label: 'nav.threats' },
-    { path: '/respond', label: 'nav.respond' },
-    { path: '/community', label: 'nav.community' },
-    { path: '/resources', label: 'nav.resources' },
+    { path: '/', label: 'Home' },
+    { path: '/learn', label: 'Learn' },
+    { path: '/threats', label: 'Threats' },
+    { path: '/respond', label: 'Respond' },
+    { path: '/community', label: 'Community' },
+    { path: '/resources', label: 'Resources' },
   ];
 
   // Handle scroll effect
@@ -92,7 +90,7 @@ const Header: React.FC = () => {
               <span className="text-xl font-bold text-cyber-blue">CyberSafe</span>
               <span className="text-xl font-bold text-saffron ml-1">India</span>
               <div className="text-xs text-gray-600">
-                <AutoTranslate text="CyberSafe India" translationKey="site.title" />
+                CyberSafe India
               </div>
             </div>
           </Link>
@@ -110,7 +108,7 @@ const Header: React.FC = () => {
                 }`}
                 aria-current={location.pathname === item.path ? 'page' : undefined}
               >
-                <AutoTranslate text={item.label} translationKey={item.label} />
+                {item.label}
               </Link>
             ))}
           </nav>
@@ -130,7 +128,6 @@ const Header: React.FC = () => {
             >
               <Volume2 className="h-5 w-5" aria-hidden="true" />
             </button>
-            <RealtimeLanguageSelector variant="compact" />
           </div>
 
           {/* Mobile Menu Button */}
@@ -174,7 +171,7 @@ const Header: React.FC = () => {
                 }`}
                 aria-current={location.pathname === item.path ? 'page' : undefined}
               >
-                <AutoTranslate text={item.label} translationKey={item.label} />
+                {item.label}
               </Link>
             ))}
             <div className="flex items-center justify-between px-3 py-2">
@@ -193,7 +190,6 @@ const Header: React.FC = () => {
                   <span>Voice</span>
                 </button>
               </div>
-              <RealtimeLanguageSelector variant="compact" />
             </div>
           </div>
         </div>

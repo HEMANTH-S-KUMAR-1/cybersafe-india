@@ -24,11 +24,6 @@ const LanguageSelector: React.FC = () => {
     { code: 'en', name: 'English', native: 'English' },
     { code: 'hi', name: 'Hindi', native: 'हिंदी' },
     { code: 'kn', name: 'Kannada', native: 'ಕನ್ನಡ' },
-    { code: 'ta', name: 'Tamil', native: 'தமிழ்' },
-    { code: 'te', name: 'Telugu', native: 'తెలుగు' },
-    { code: 'bn', name: 'Bengali', native: 'বাংলা' },
-    { code: 'gu', name: 'Gujarati', native: 'ગુજરાતી' },
-    { code: 'mr', name: 'Marathi', native: 'मराठी' },
   ], []);
 
   // Load saved language preference on mount
