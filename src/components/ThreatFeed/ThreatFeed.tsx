@@ -16,7 +16,7 @@ export default function ThreatFeed() {
     const fetchThreats = async () => {
       setIsLoading(true);
       try {
-        const threats = await threatIntelligenceService.fetchLatestThreats(controller.signal);
+        const threats = await threatIntelligenceService.fetchLatestThreats();
         if (!controller.signal.aborted) {
             setAlerts(threats);
             setLastUpdated(new Date());
