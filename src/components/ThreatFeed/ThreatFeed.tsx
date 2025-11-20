@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { AlertTriangle, Shield, Filter, RefreshCw, ExternalLink, Volume2 } from 'lucide-react';
 import { threatIntelligenceService, ThreatAlert } from '../../services/threatIntelligence';
 import { voiceNarrationService } from '../../services/voiceNarration';
@@ -10,29 +10,39 @@ export default function ThreatFeed() {
   const [isLoading, setIsLoading] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
 
-  const fetchThreats = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      const threats = await threatIntelligenceService.fetchLatestThreats();
-      setAlerts(threats);
-      setLastUpdated(new Date());
-    } catch (error) {
-      console.error('Error fetching real-time threats:', error);
-    }
-    setIsLoading(false);
-  }, []);
-
-  const readThreat = (alert: ThreatAlert) => {
-    const threatText = `${alert.type}. ${alert.detail}. Safety tip: ${alert.tip}`;
-    voiceNarrationService.speak(threatText);
-  };
-
   useEffect(() => {
+    const controller = new AbortController();
+    
+    const fetchThreats = async () => {
+      setIsLoading(true);
+      try {
+        const threats = await threatIntelligenceService.fetchLatestThreats(controller.signal);
+        if (!controller.signal.aborted) {
+            setAlerts(threats);
+            setLastUpdated(new Date());
+        }
+      } catch (error) {
+        // Error handled by fallback data in service layer
+        if (controller.signal.aborted) {
+          // Request was cancelled, ignore
+        }
+      } finally {
+        if (!controller.signal.aborted) {
+            setIsLoading(false);
+        }
+      }
+    };
+
     fetchThreats();
+    
     // Auto-refresh every 5 minutes for real-time updates
     const interval = setInterval(fetchThreats, 300000);
-    return () => clearInterval(interval);
-  }, [fetchThreats]);
+    
+    return () => {
+        controller.abort();
+        clearInterval(interval);
+    };
+  }, []);
 
   useEffect(() => {
     if (selectedFilter === 'all') {
@@ -70,6 +80,24 @@ export default function ThreatFeed() {
     { value: 'crypto_scam', label: 'Crypto Scams' }
   ];
 
+  const readThreat = (alert: ThreatAlert) => {
+    const threatText = `${alert.type}. ${alert.detail}. Safety tip: ${alert.tip}`;
+    voiceNarrationService.speak(threatText);
+  };
+
+  const handleManualRefresh = async () => {
+      setIsLoading(true);
+      try {
+        const threats = await threatIntelligenceService.fetchLatestThreats();
+        setAlerts(threats);
+        setLastUpdated(new Date());
+      } catch (error) {
+        // Error handled by fallback data in service layer
+      } finally {
+        setIsLoading(false);
+      }
+  };
+
   return (
     <div className="p-6 threat-card rounded-xl shadow-lg border border-gray-200">
       {/* Header */}
@@ -83,7 +111,7 @@ export default function ThreatFeed() {
         
         <div className="flex items-center gap-3">
           <button
-            onClick={fetchThreats}
+            onClick={handleManualRefresh}
             disabled={isLoading}
             className="threat-refresh-btn flex items-center gap-2 px-3 py-2 rounded-lg disabled:opacity-50 transition-all"
           >

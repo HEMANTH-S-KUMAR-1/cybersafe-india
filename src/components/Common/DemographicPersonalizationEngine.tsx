@@ -20,11 +20,13 @@ const DemographicPersonalizationEngine: React.FC = () => {
 
   // Update tips when demographic changes
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
     if (selectedDemographic) {
       setIsLoading(true);
       
       // Simulate loading for better UX
-      setTimeout(() => {
+      timeoutId = setTimeout(() => {
         const tips = getTipsByDemographic(selectedDemographic);
         setDisplayedTips(showAllTips ? tips : tips.slice(0, 3));
         setIsLoading(false);
@@ -35,6 +37,10 @@ const DemographicPersonalizationEngine: React.FC = () => {
     } else {
       setDisplayedTips([]);
     }
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, [selectedDemographic, showAllTips]);
 
   const handleDemographicChange = (demographicId: string) => {
